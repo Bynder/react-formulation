@@ -3,11 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import autobind from 'autobind-decorator';
 import type { Children } from 'react';
-import { injectIntl } from 'react-intl';
 
 import withValidation from './withValidation';
 
-import messages from './utils/validationMessages';
+import defaultMessages from './utils/validationMessages';
 
 type Props = {
     name: string,
@@ -123,7 +122,6 @@ InlineFormField.propTypes = {
 };
 
 const InlineFormErrors = ({
-    intl,
     children,
     ...props
 }, context) => {
@@ -138,12 +136,19 @@ const InlineFormErrors = ({
         <div {...props}>
             {errors.map((error) => {
                 let displayError = null;
-                if (messages[error.rule]) {
-                    displayError = intl.formatMessage(messages[error.rule], {
-                        condition: error.condition,
-                    });
+                const messages = context.validatorMessages;
+
+                if (messages && messages[error.rule]) {
+                    const customError = messages[error.rule];
+                    if (typeof customError === 'function') {
+                        displayError = customError(error.condition);
+                    } else if (typeof customError === 'string') {
+                        displayError = customError;
+                    }
+                } else if (defaultMessages[error.rule]) {
+                    displayError = defaultMessages[error.rule](error.condition);
                 } else {
-                    displayError = intl.formatMessage(error);
+                    displayError = error.rule;
                 }
 
                 return displayError;
@@ -153,13 +158,13 @@ const InlineFormErrors = ({
 };
 
 InlineFormErrors.propTypes = {
-    intl: PropTypes.objectOf(PropTypes.any),
     children: PropTypes.node,
 };
 
 InlineFormErrors.contextTypes = {
     validatorName: PropTypes.string,
     validatorAttributes: PropTypes.func,
+    validatorMessages: PropTypes.object,
 };
 
 const InlineFormSubmit = ({
@@ -219,10 +224,9 @@ InlineFormCancel.contextTypes = {
 };
 
 const InlineForm = withValidation({})(InlineFormValidator);
-const InlineFormErrorsBlock = injectIntl(InlineFormErrors);
 
 InlineForm.Field = InlineFormField;
-InlineForm.Errors = InlineFormErrorsBlock;
+InlineForm.Errors = InlineFormErrors;
 InlineForm.Submit = InlineFormSubmit;
 InlineForm.Cancel = InlineFormCancel;
 

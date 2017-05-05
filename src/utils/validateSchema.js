@@ -72,7 +72,7 @@ const getValidationErrors = (
                 condition,
             };
             errors.push(validationError);
-        } else if (typeof validatedRules === 'object') {
+        } else if (typeof validatedRules === 'string') {
             errors.push(validatedRules);
         }
     });

@@ -45,6 +45,8 @@ export default function withValidation(configuration: Object) {
                     validatorBindInput: this.bindInput,
                     validatorAttributes: this.getSchema,
                     validatorCanSubmit: this.state.schema.isValid && this.state.isTouched,
+                    validatorMessages: (configuration && configuration.messages) ?
+                        configuration.messages : null,
                 };
             }
 
@@ -121,18 +123,6 @@ export default function withValidation(configuration: Object) {
             @autobind
             bindToChangeEvent(e: Event) {
                 const { name, type, value } = e.target;
-
-                // UPDATE
-                if (type === 'checkbox') {
-                    const oldCheckboxValue = this.state.model[name] || [];
-                    const newCheckboxValue = e.target.checked
-                        ? oldCheckboxValue.concat(value)
-                        : oldCheckboxValue.filter(v => v !== value);
-
-                    this.setInputProperty(name, newCheckboxValue);
-                } else {
-                    this.setInputProperty(name, value);
-                }
 
                 if (this.state.validateOn === 'change') {
                     this.validateInput(e);
@@ -232,6 +222,7 @@ export default function withValidation(configuration: Object) {
             validatorBindInput: PropTypes.func,
             validatorAttributes: PropTypes.func,
             validatorCanSubmit: PropTypes.bool,
+            validatorMessages: PropTypes.object,
         };
 
         ValidationWrapper.displayName = `Validator(${getComponentName(WrappedComponent)})`;

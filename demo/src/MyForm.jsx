@@ -35,6 +35,10 @@ type Props = {
             phoneNumbers: true,
         },
     },
+    messages: {
+        required: 'I am mandatory',
+        minLength: condition => `This field should contain a minimum of ${condition} characters.`,
+    },
 })
 class MyForm extends React.Component {
     static props: Props;
@@ -58,6 +62,7 @@ class MyForm extends React.Component {
         console.log(model.phone.value);
     }
 
+    @autobind
     clearForm() {
         this.props.clearForm();
     }

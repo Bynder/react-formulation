@@ -22,8 +22,7 @@
     "autobind-decorator": "^1.4.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-intl": "^2.2.3"
+    "react-dom": "^15.5.4"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",

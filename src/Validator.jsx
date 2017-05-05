@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl } from 'react-intl';
 
-import messages from './utils/validationMessages';
+import defaultMessages from './utils/validationMessages';
 
 const ValidatorForm = ({ onSubmit, children, ...props }, context) => {
     let onFormSubmit = onSubmit;
@@ -50,7 +49,7 @@ const Validator = ({
                 },
             )}
             {(schema.isValid === false && schema.isTouched) ? (
-                <ValidatorErrorsBlock
+                <ErrorsBlock
                     errors={schema.errors}
                 />
             ) : null }
@@ -70,18 +69,26 @@ Validator.contextTypes = {
 
 const ErrorsBlock = ({
     errors,
-    intl,
-}) => (
+}, context) => (
     errors ? (
         <div>
             {errors.map((error, index) => {
                 let displayError = null;
-                if (messages[error.rule]) {
-                    displayError = intl.formatMessage(messages[error.rule], {
-                        condition: error.condition,
-                    });
+                const messages = context.validatorMessages;
+
+                if (typeof error === 'string') {
+                    displayError = error;
+                } else if (messages && messages[error.rule]) {
+                    const customError = messages[error.rule];
+                    if (typeof customError === 'function') {
+                        displayError = customError(error.condition);
+                    } else if (typeof customError === 'string') {
+                        displayError = customError;
+                    }
+                } else if (defaultMessages[error.rule]) {
+                    displayError = defaultMessages[error.rule](error.condition);
                 } else {
-                    displayError = intl.formatMessage(error);
+                    displayError = error.rule;
                 }
                 return (
                     <div key={index}>
@@ -93,15 +100,21 @@ const ErrorsBlock = ({
     ) : null
 );
 
-const ValidatorErrorsBlock = injectIntl(ErrorsBlock);
-
 ErrorsBlock.propTypes = {
-    errors: PropTypes.arrayOf(PropTypes.object),
-    intl: PropTypes.objectOf(PropTypes.any),
+    errors: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+            PropTypes.object,
+            PropTypes.string,
+        ]),
+    ),
+};
+
+ErrorsBlock.contextTypes = {
+    validatorMessages: PropTypes.object,
 };
 
 Validator.Form = ValidatorForm;
-Validator.Errors = ValidatorErrorsBlock;
+Validator.Errors = ErrorsBlock;
 
 Object.defineProperty(Validator.Errors, 'name', { value: 'Validator.Errors' });
 Object.defineProperty(Validator.Form, 'name', { value: 'Validator.Form' });
