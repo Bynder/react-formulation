@@ -11,6 +11,9 @@ const MyTinyForm = () => (
             minLength: 2,
             maxLength: 20,
         }}
+        messages={{
+            required: 'Please don\'t leave me empty',
+        }}
         onSubmit={(val) => { console.log(val); }}
     >
         <InlineForm.Field resetOnEscape>
