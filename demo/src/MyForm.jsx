@@ -14,30 +14,16 @@ type Props = {
 }
 
 @withValidation({
-    validateOn: 'change',
     schema: {
         firstname: {
-            // Custom validation + message
-            customvalidator: {
-                test: val => (val && val.length),
-                message: 'Shit is niet goed man',
-            },
-            // Default validation + condition
             minLength: 2,
-            maxLength: 20,
         },
         lastname: {
-            // Validation without condition
             required: true,
         },
         phone: {
-            required: true,
             phoneNumbers: true,
         },
-    },
-    messages: {
-        required: 'I am mandatory',
-        minLength: condition => `This field should contain a minimum of ${condition} characters.`,
     },
 })
 class MyForm extends React.Component {
@@ -69,9 +55,7 @@ class MyForm extends React.Component {
 
     render() {
         return (
-            <Validator.Form
-                onSubmit={this.onSubmit}
-            >
+            <Validator.Form onSubmit={this.onSubmit}>
                 <Validator name="firstname">
                     <label htmlFor="myform-firstname">First name</label>
                     <input id="myform-firstname" className="form-control" />

@@ -122,7 +122,9 @@ export default function withValidation(configuration: Object) {
 
             @autobind
             bindToChangeEvent(e: Event) {
-                const { name, type, value } = e.target;
+                const { name, value } = e.target;
+
+                this.setInputProperty(name, value);
 
                 if (this.state.validateOn === 'change') {
                     this.validateInput(e);
