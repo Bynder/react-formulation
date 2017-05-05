@@ -1,0 +1,17 @@
+{
+    "presets": [
+        "react",
+        "latest"
+    ],
+    "plugins": [
+        "babel-plugin-add-module-exports",
+        "transform-decorators-legacy",
+        "transform-flow-strip-types",
+        "transform-flow-comments",
+        ["transform-object-rest-spread",
+            {
+                "useBuiltIns": true
+            }
+        ]
+    ]
+}
