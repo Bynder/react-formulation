@@ -138,7 +138,9 @@ const InlineFormErrors = ({
                 let displayError = null;
                 const messages = context.validatorMessages;
 
-                if (messages && messages[error.rule]) {
+                if (typeof error === 'string') {
+                    displayError = error;
+                } else if (messages && messages[error.rule]) {
                     const customError = messages[error.rule];
                     if (typeof customError === 'function') {
                         displayError = customError(error.condition);
