@@ -1,6 +1,8 @@
 # React Formulation
 Easy form validation
 
+*Inspired by [react-reformed](https://github.com/davezuko/react-reformed)*
+
 ## Installation
 ```
 npm install @bynder/react-formulation --save
