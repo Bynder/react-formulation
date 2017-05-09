@@ -1,7 +1,7 @@
 import React from 'react';
 import autobind from 'autobind-decorator';
 
-import { withValidation, Validator } from 'react-formulation';
+import { withValidation, Validator } from '../../lib/react-formulation';
 
 type Props = {
     schema: {

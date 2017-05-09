@@ -4,12 +4,12 @@ const webpack = require('webpack');
 module.exports = {
     entry: {
         app: [
-            path.resolve(__dirname, 'demo', 'src', 'App.js'),
+            path.resolve(__dirname, 'docs', 'src', 'App.js'),
         ],
     },
     output: {
         filename: 'main.js',
-        path: path.resolve(__dirname, 'demo'),
+        path: path.resolve(__dirname, 'docs'),
         publicPath: '/',
     },
     plugins: [

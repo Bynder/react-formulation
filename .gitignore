@@ -3,4 +3,3 @@ node_modules/
 *.hot-update.js
 *.hot-update.json
 .DS_Store
-demo/main.js

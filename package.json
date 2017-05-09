@@ -54,8 +54,8 @@
     "webpack": "^2.5.0"
   },
   "scripts": {
-    "start": "open demo/index.html && webpack --config webpack.config.demo.js --watch",
-    "build": "webpack --env build",
+    "start": "open docs/index.html && webpack --config webpack.config.demo.js --watch",
+    "build": "webpack && webpack --env build",
     "dev": "webpack --progress --colors --watch --env dev",
     "test": "mocha --compilers js:babel-core/register --colors ./test/*.spec.js",
     "test:watch": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js",

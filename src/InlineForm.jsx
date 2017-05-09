@@ -61,10 +61,7 @@ class InlineFormValidator extends React.Component {
 
     render() {
         return (
-            <form
-                onSubmit={this.onSubmit}
-                {...this.props}
-            >
+            <form onSubmit={this.onSubmit}>
                 {this.props.children}
             </form>
         );

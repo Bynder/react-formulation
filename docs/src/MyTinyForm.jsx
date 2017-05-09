@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { InlineForm } from 'react-formulation';
+import { InlineForm } from '../../lib/react-formulation';
 
 const MyTinyForm = () => (
     <InlineForm
