@@ -1,7 +1,7 @@
 {
-  "name": "react-formulation",
+  "name": "@bynder/react-formulation",
   "author": "Kim Vermeer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simple form validation",
   "license": "MIT",
   "repository": {
@@ -50,6 +50,7 @@
     "build": "webpack --env build",
     "dev": "webpack --progress --colors --watch --env dev",
     "test": "mocha --compilers js:babel-core/register --colors ./test/*.spec.js",
-    "test:watch": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js"
+    "test:watch": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js",
+    "prepublish": "npm run build"
   }
 }
