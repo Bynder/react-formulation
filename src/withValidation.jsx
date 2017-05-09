@@ -32,11 +32,19 @@ export default function withValidation(configuration: Object) {
                     validateOn = props.validateOn;
                 }
 
+                let customMessages;
+                if (configuration && configuration.messages) {
+                    customMessages = configuration.messages;
+                } else if (props.messages) {
+                    customMessages = props.messages;
+                }
+
                 this.state = {
                     model: props.initialModel || {},
                     isTouched: false,
                     schema: setSchema(this.schema),
                     validateOn,
+                    customMessages,
                 };
             }
 
@@ -45,8 +53,7 @@ export default function withValidation(configuration: Object) {
                     validatorBindInput: this.bindInput,
                     validatorAttributes: this.getSchema,
                     validatorCanSubmit: this.state.schema.isValid && this.state.isTouched,
-                    validatorMessages: (configuration && configuration.messages) ?
-                        configuration.messages : null,
+                    validatorMessages: this.state.customMessages,
                 };
             }
 

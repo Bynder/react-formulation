@@ -171,7 +171,7 @@ const InlineFormSubmit = ({
     children,
     ...props
 }, context) => (
-    <div {...props}>
+    <div style={style} {...props}>
         {React.Children.map(children,
             (child) => {
                 if (typeof child === 'object') {
