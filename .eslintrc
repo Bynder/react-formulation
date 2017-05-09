@@ -1,0 +1,39 @@
+{
+    "parser": "babel-eslint",
+    "extends": ["airbnb"],
+    "plugins": [
+        "flowtype"
+    ],
+    "settings": {
+        "import/resolver": {
+            "babel-module": {}
+        },
+        "flowtype": {
+          "onlyFilesWithFlowAnnotation": true
+        }
+    },
+    "globals" : {
+        "window": true,
+        "IS_PRODUCTION": true,
+        "React": true,
+        "Generator": true
+    },
+    "rules" : {
+        "indent": ["error", 4, { "SwitchCase": 1 }],
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
+
+        "react/no-array-index-key": "off",
+        "react/require-default-props": "off",
+
+        /* FLOWTYPE RULES */
+        "flowtype/define-flow-type": 1,
+        "flowtype/space-before-type-colon": 0,
+        "flowtype/use-flow-type": 1,
+        "flowtype/valid-syntax": 1,
+        "flowtype/type-id-match": [
+          2,
+          "^([A-Z]+[a-z0-9A-Z]*)$"
+        ]
+    }
+}

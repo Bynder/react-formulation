@@ -1,7 +1,7 @@
 {
-  "name": "react-formulation",
+  "name": "@bynder/react-formulation",
   "author": "Kim Vermeer",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "description": "Simple form validation",
   "license": "MIT",
   "repository": {
@@ -22,8 +22,7 @@
     "autobind-decorator": "^1.4.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-intl": "^2.2.3"
+    "react-dom": "^15.5.4"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
@@ -51,6 +50,7 @@
     "build": "webpack --env build",
     "dev": "webpack --progress --colors --watch --env dev",
     "test": "mocha --compilers js:babel-core/register --colors ./test/*.spec.js",
-    "test:watch": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js"
+    "test:watch": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js",
+    "prepublish": "npm run build"
   }
 }
