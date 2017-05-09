@@ -105,9 +105,7 @@ const YourInlineForm = () => (
         </InlineForm.Field>
         <InlineForm.Errors /> // (optional) This will display the error messages
         <InlineForm.Cancel> // (optional) This will reset your form when you click cancel
-            <button
-                type="button"
-            >
+            <button type="button">
                 Cancel
             </button>
         </InlineForm.Cancel>
@@ -175,7 +173,7 @@ this.props.setInitialModel({
 });
 ```
 
-### `isTouched : boolean`
+### `isTouched: boolean`
 Returns `true` if any of the fields have been changed, otherwise returns `false`.
 
 Usage:
@@ -204,7 +202,7 @@ Returns:
 }
 ```
 
-### `schema`
+### `schema: Object`
 Returns the complete error schema.
 
 Usage:
@@ -262,7 +260,7 @@ this.props.setModel({
 });
 ```
 
-### `isButtonDisabled`
+### `isButtonDisabled: boolean`
 Tells you if your submit button should be disabled.
 
 Usage:
@@ -270,7 +268,7 @@ Usage:
 <button type="submit" disabled={this.props.isButtonDisabled} />
 ```
 
-### `resetValidation()`
+### `resetValidation(): Function`
 Removes the validation errors from your form, sets `isValid` to null.
 
 Usage:
@@ -294,7 +292,7 @@ Returns:
 }
 ```
 
-### `clearForm()`
+### `clearForm(): Function`
 Removes all values from all models.
 
 Usage:
@@ -303,7 +301,7 @@ this.props.clearForm();
 ```
 
 
-### `resetForm()`
+### `resetForm(): Function`
 Resets the validation and sets the form to its initial model.
 
 Usage:
@@ -311,7 +309,7 @@ Usage:
 this.props.resetForm();
 ```
 
-### `model`
+### `model: Object`
 Returns the complete model.
 
 Usage:
