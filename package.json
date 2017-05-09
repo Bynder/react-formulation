@@ -15,7 +15,15 @@
   "keywords": [
     "Form",
     "Validation",
-    "React"
+    "Validate",
+    "Validator",
+    "React",
+    "Regex",
+    "Component",
+    "High order component",
+    "HOC",
+    "Translations",
+    "Schema"
   ],
   "main": "lib/react-formulation.js",
   "dependencies": {

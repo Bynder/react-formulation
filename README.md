@@ -3,6 +3,20 @@ Easy form validation
 
 *Inspired by [react-reformed](https://github.com/davezuko/react-reformed)*
 
+## Table of Contents
+
+1. [Installation](#installation)
+1. [Demo](#demo)
+1. [Usage](#usage)
+1. [HOC](#hoc)
+1. [Inline Form](#inline-form)
+1. [Advanced](#advanced)
+1. [Custom validation rules](#custom-validation-rules)
+1. [Custom error messages](#custom-error-messages)
+1. [API](#api)
+1. [Component options](#component-options)
+
+
 ## Installation
 ```
 npm install @bynder/react-formulation --save
@@ -334,3 +348,49 @@ Returns
     }
 }
 ```
+
+## Component options
+
+### `<Validator />`
+| Property | Type | Default | Description |
+|:---|:---|:---|:---|
+| name | string | undefined | Name of the model |
+
+### `<Validator.Form />`
+| Property | Type | Default | Description |
+|:---|:---|:---|:---|
+| onSubmit | func | undefined | Submit handler |
+| ... props |
+
+### `<InlineForm />`
+| Property | Type | Default | Description |
+|:---|:---|:---|:---|
+| name | string | undefined | Name of the model |
+| initialValue | object | undefined | Initial value of the model |
+| onSubmit | func | undefined | Submit handler |
+| rules | object | undefined | Validation rules |
+| messages | object | undefined | Custom validation messages |
+| ... props |
+
+### `<InlineForm.Field />`
+| Property | Type | Default | Description |
+|:---|:---|:---|:---|
+| resetOnEscape | bool | false | Resets the input value on escape |
+| ... props |
+
+### `<InlineForm.Errors />`
+| Property | Type | Default | Description |
+|:---|:---|:---|:---|
+| ... props |
+
+### `<InlineForm.Cancel />`
+| Property | Type | Default | Description |
+|:---|:---|:---|:---|
+| style | object | `{ display: 'inline' }` | CSS style attribute |
+| ... props |
+
+### `<InlineForm.Submit />`
+| Property | Type | Default | Description |
+|:---|:---|:---|:---|
+| style | object | `{ display: 'inline' }` | CSS style attribute |
+| ... props |
