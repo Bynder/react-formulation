@@ -23,7 +23,7 @@ npm install @bynder/react-formulation --save
 ```
 
 ## Demo
-If you want to try out a little demo first:
+If you want to try out a little demo first, you can check it out [here](https://bynder.github.io/react-formulation/) or try it yourself:
 ```
 git clone git@github.com:Bynder/react-formulation.git
 cd react-formulation
