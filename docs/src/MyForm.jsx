@@ -14,6 +14,7 @@ type Props = {
 }
 
 @withValidation({
+    validateOn: 'change',
     schema: {
         firstname: {
             minLength: 2,
