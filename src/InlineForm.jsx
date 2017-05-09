@@ -21,7 +21,7 @@ type Props = {
     resetForm: () => void,
 };
 
-const style = {
+const defaultStyle = {
     display: 'inline',
 };
 
@@ -63,6 +63,7 @@ class InlineFormValidator extends React.Component {
         return (
             <form
                 onSubmit={this.onSubmit}
+                {...this.props}
             >
                 {this.props.children}
             </form>
@@ -170,10 +171,11 @@ InlineFormErrors.contextTypes = {
 };
 
 const InlineFormSubmit = ({
+    style,
     children,
     ...props
 }, context) => (
-    <div style={style} {...props}>
+    <div style={style || defaultStyle} {...props}>
         {React.Children.map(children,
             (child) => {
                 if (typeof child === 'object') {
@@ -188,6 +190,9 @@ const InlineFormSubmit = ({
 );
 
 InlineFormSubmit.propTypes = {
+    style: PropTypes.objectOf(
+        PropTypes.string,
+    ),
     children: PropTypes.node,
 };
 
@@ -196,10 +201,11 @@ InlineFormSubmit.contextTypes = {
 };
 
 const InlineFormCancel = ({
+    style,
     children,
     ...props
 }, context) => (
-    <div style={style} {...props}>
+    <div style={style || defaultStyle} {...props}>
         {React.Children.map(children,
             (child) => {
                 const onClick = () => {
@@ -218,6 +224,9 @@ const InlineFormCancel = ({
 );
 
 InlineFormCancel.propTypes = {
+    style: PropTypes.objectOf(
+        PropTypes.string,
+    ),
     children: PropTypes.node,
 };
 
