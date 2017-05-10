@@ -355,6 +355,7 @@ Returns
 | Property | Type | Default | Description |
 |:---|:---|:---|:---|
 | name | string | undefined | Name of the model |
+| hideErrors | bool | false | Hide error messages |
 
 ### `<Validator.Form />`
 | Property | Type | Default | Description |
