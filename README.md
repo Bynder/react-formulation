@@ -314,13 +314,28 @@ Usage:
 this.props.clearForm();
 ```
 
-
 ### `resetForm(): Function`
 Resets the validation and sets the form to its initial model.
 
 Usage:
 ```javascript
 this.props.resetForm();
+```
+
+### `setTouched(): Function`
+Sets the forms touched state to `true`.
+
+Usage:
+```javascript
+this.props.setTouched();
+```
+
+### `setUntouched(): Function`
+Sets the forms touched state to `false`.
+
+Usage:
+```javascript
+this.props.setUntouched();
 ```
 
 ### `model: Object`

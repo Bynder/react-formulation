@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c9f68438a50e283b3bcd"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "83c00bd2d29c43dd287b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -10409,7 +10409,7 @@ var MyForm = (_dec = (0, _reactFormulation.withValidation)({
                     {
                         className: 'btn btn-primary',
                         type: 'submit',
-                        disabled: !this.props.schema.isValid || !this.props.isTouched
+                        disabled: this.props.isButtonDisabled
                     },
                     'Submit'
                 )
@@ -12254,10 +12254,20 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                 customMessages = props.messages;
               }
 
+              var initialModel = props.initialModel || {};
+              if (!props.initialModel) {
+                Object.keys(_this.schema).forEach(function (key) {
+                  initialModel[key] = {
+                    value: null,
+                    isTouched: false
+                  };
+                });
+              }
+
               _this.state = {
-                model: props.initialModel || {},
+                model: initialModel || {},
                 isTouched: false,
-                schema: (0, _validateSchema.setSchema)(_this.schema),
+                schema: (0, _validateSchema.getAllValidationErrors)(_this.schema, initialModel),
                 validateOn: validateOn,
                 customMessages: customMessages
               };
@@ -12312,6 +12322,16 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                   value: value,
                   isTouched: true
                 }))));
+              }
+            }, {
+              key: 'setTouched',
+              value: function setTouched() {
+                this.setState({ isTouched: true });
+              }
+            }, {
+              key: 'setUntouched',
+              value: function setUntouched() {
+                this.setState({ isTouched: false });
               }
             }, {
               key: 'getAllValidationErrors',
@@ -12436,14 +12456,16 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                   resetForm: this.resetForm,
                   clearForm: this.clearForm,
                   getSchema: this.getSchema,
-                  isButtonDisabled: this.state.schema.isValid && this.state.isTouched
+                  isButtonDisabled: !this.state.schema.isValid || !this.state.isTouched,
+                  setTouched: this.setTouched,
+                  setUntouched: this.setUntouched
                 });
                 return _react2.default.createElement(WrappedComponent, nextProps);
               }
             }]);
 
             return ValidationWrapper;
-          }(_react2.default.Component), (_applyDecoratedDescriptor(_class.prototype, 'setInitialModel', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'setInitialModel'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setModel', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'setModel'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setProperty', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'setProperty'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setInputProperty', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'setInputProperty'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getAllValidationErrors', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'getAllValidationErrors'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getSchema', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'getSchema'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'validateInput', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'validateInput'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'bindToChangeEvent', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'bindToChangeEvent'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'bindInput', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'bindInput'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'resetValidation', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'resetValidation'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'resetForm', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'resetForm'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'clearForm', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'clearForm'), _class.prototype)), _class);
+          }(_react2.default.Component), (_applyDecoratedDescriptor(_class.prototype, 'setInitialModel', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'setInitialModel'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setModel', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'setModel'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setProperty', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'setProperty'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setInputProperty', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'setInputProperty'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setTouched', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'setTouched'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setUntouched', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'setUntouched'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getAllValidationErrors', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'getAllValidationErrors'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getSchema', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'getSchema'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'validateInput', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'validateInput'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'bindToChangeEvent', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'bindToChangeEvent'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'bindInput', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'bindInput'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'resetValidation', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'resetValidation'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'resetForm', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'resetForm'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'clearForm', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'clearForm'), _class.prototype)), _class);
 
           ValidationWrapper.childContextTypes = {
             validatorBindInput: _propTypes2.default.func,

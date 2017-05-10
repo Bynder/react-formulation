@@ -5,7 +5,6 @@ import autobind from 'autobind-decorator';
 
 import getComponentName from './utils/getComponentName';
 import {
-    setSchema,
     getValidationErrors,
     getAllValidationErrors,
 } from './utils/validateSchema';
@@ -39,10 +38,20 @@ export default function withValidation(configuration: Object) {
                     customMessages = props.messages;
                 }
 
+                const initialModel = props.initialModel || {};
+                if (!props.initialModel) {
+                    Object.keys(this.schema).forEach((key) => {
+                        initialModel[key] = {
+                            value: null,
+                            isTouched: false,
+                        };
+                    });
+                }
+
                 this.state = {
-                    model: props.initialModel || {},
+                    model: initialModel || {},
                     isTouched: false,
-                    schema: setSchema(this.schema),
+                    schema: getAllValidationErrors(this.schema, initialModel),
                     validateOn,
                     customMessages,
                 };
@@ -98,6 +107,16 @@ export default function withValidation(configuration: Object) {
                         isTouched: true,
                     },
                 });
+            }
+
+            @autobind
+            setTouched() {
+                this.setState({ isTouched: true });
+            }
+
+            @autobind
+            setUntouched() {
+                this.setState({ isTouched: false });
             }
 
             @autobind
@@ -217,7 +236,9 @@ export default function withValidation(configuration: Object) {
                     resetForm: this.resetForm,
                     clearForm: this.clearForm,
                     getSchema: this.getSchema,
-                    isButtonDisabled: this.state.schema.isValid && this.state.isTouched,
+                    isButtonDisabled: !this.state.schema.isValid || !this.state.isTouched,
+                    setTouched: this.setTouched,
+                    setUntouched: this.setUntouched,
                 };
                 return (
                     <WrappedComponent

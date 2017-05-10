@@ -4,13 +4,10 @@ import autobind from 'autobind-decorator';
 import { withValidation, Validator } from '../../lib/react-formulation';
 
 type Props = {
-    schema: {
-        isValid: boolean,
-    },
-    isTouched: boolean,
     setInitialModel: Object => void,
     clearForm: () => void,
     model: Object,
+    isButtonDisabled: boolean,
 }
 
 @withValidation({
@@ -79,7 +76,7 @@ class MyForm extends React.Component {
                 <button
                     className="btn btn-primary"
                     type="submit"
-                    disabled={!this.props.schema.isValid || !this.props.isTouched}
+                    disabled={this.props.isButtonDisabled}
                 >
                     Submit
                 </button>
