@@ -32,6 +32,7 @@ ValidatorForm.contextTypes = {
 
 const Validator = ({
     name,
+    hideErrors,
     children,
 }, context) => {
     const schema = context.validatorAttributes(name);
@@ -48,7 +49,7 @@ const Validator = ({
                     return null;
                 },
             )}
-            {(schema.isValid === false && schema.isTouched) ? (
+            {(!hideErrors && schema.isValid === false && schema.isTouched) ? (
                 <ErrorsBlock
                     errors={schema.errors}
                 />
@@ -59,6 +60,7 @@ const Validator = ({
 
 Validator.propTypes = {
     name: PropTypes.string,
+    hideErrors: PropTypes.bool,
     children: PropTypes.node,
 };
 

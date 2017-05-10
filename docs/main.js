@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e883244db659bfe516fd"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c9f68438a50e283b3bcd"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -13917,6 +13917,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       var Validator = function Validator(_ref2, context) {
         var name = _ref2.name,
+            hideErrors = _ref2.hideErrors,
             children = _ref2.children;
 
         var schema = context.validatorAttributes(name);
@@ -13926,13 +13927,14 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
             return _react2.default.cloneElement(child, Object.assign({}, context.validatorBindInput(name)));
           }
           return null;
-        }), schema.isValid === false && schema.isTouched ? _react2.default.createElement(ErrorsBlock, {
+        }), !hideErrors && schema.isValid === false && schema.isTouched ? _react2.default.createElement(ErrorsBlock, {
           errors: schema.errors
         }) : null);
       };
 
       Validator.propTypes = {
         name: _propTypes2.default.string,
+        hideErrors: _propTypes2.default.bool,
         children: _propTypes2.default.node
       };
 
