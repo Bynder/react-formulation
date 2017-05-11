@@ -15,23 +15,25 @@ const getAllValidationErrors = (schema: Object, model: Object) => {
 
     Object.entries(schema).forEach(([name, rules]) => {
         const errors = [];
-        const value = model[name].value;
         const isValid = (typeof validationErrors.isValid !== 'undefined') ?
             validationErrors.isValid :
             true;
 
-        Object.entries(rules).forEach(([rule, condition]) => {
-            const validatedRules = validateRules(rule, value, condition);
-            if (!validatedRules) {
-                const validationError = {
-                    rule,
-                    condition,
-                };
-                errors.push(validationError);
-            } else if (typeof validatedRules === 'object') {
-                errors.push(validatedRules);
-            }
-        });
+        if (model[name]) {
+            const value = model[name].value;
+            Object.entries(rules).forEach(([rule, condition]) => {
+                const validatedRules = validateRules(rule, value, condition);
+                if (!validatedRules) {
+                    const validationError = {
+                        rule,
+                        condition,
+                    };
+                    errors.push(validationError);
+                } else if (typeof validatedRules === 'object') {
+                    errors.push(validatedRules);
+                }
+            });
+        }
 
         validationErrors.fields[name] = {
             errors,
