@@ -68,7 +68,7 @@ export default function withValidation(configuration: Object) {
 
             @autobind
             setInitialModel(model: Object) {
-                const initialModel = {};
+                const initialModel = this.state.model;
 
                 Object.entries(model).forEach(([key, value]) => {
                     initialModel[key] = {

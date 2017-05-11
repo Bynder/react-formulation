@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import autobind from 'autobind-decorator';
 
@@ -56,15 +57,15 @@ class MyForm extends React.Component {
             <Validator.Form onSubmit={this.onSubmit}>
                 <Validator name="firstname">
                     <label htmlFor="myform-firstname">First name</label>
-                    <input id="myform-firstname" className="form-control" />
+                    <input id="myform-firstname" className="form-control" autoComplete="off" />
                 </Validator>
                 <Validator name="lastname">
                     <label htmlFor="myform-lastname">Last name</label>
-                    <input id="myform-lastname" className="form-control" />
+                    <input id="myform-lastname" className="form-control" autoComplete="off" />
                 </Validator>
                 <Validator name="phone">
                     <label htmlFor="myform-phone">Phone number</label>
-                    <input id="myform-phone" className="form-control" />
+                    <input id="myform-phone" className="form-control" autoComplete="off" />
                 </Validator>
                 <button
                     className="btn btn-secondary"

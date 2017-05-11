@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "83c00bd2d29c43dd287b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "6a888c5a2f65c2447b38"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -10373,7 +10373,7 @@ var MyForm = (_dec = (0, _reactFormulation.withValidation)({
                         { htmlFor: 'myform-firstname' },
                         'First name'
                     ),
-                    _react2.default.createElement('input', { id: 'myform-firstname', className: 'form-control' })
+                    _react2.default.createElement('input', { id: 'myform-firstname', className: 'form-control', autoComplete: 'off' })
                 ),
                 _react2.default.createElement(
                     _reactFormulation.Validator,
@@ -10383,7 +10383,7 @@ var MyForm = (_dec = (0, _reactFormulation.withValidation)({
                         { htmlFor: 'myform-lastname' },
                         'Last name'
                     ),
-                    _react2.default.createElement('input', { id: 'myform-lastname', className: 'form-control' })
+                    _react2.default.createElement('input', { id: 'myform-lastname', className: 'form-control', autoComplete: 'off' })
                 ),
                 _react2.default.createElement(
                     _reactFormulation.Validator,
@@ -10393,7 +10393,7 @@ var MyForm = (_dec = (0, _reactFormulation.withValidation)({
                         { htmlFor: 'myform-phone' },
                         'Phone number'
                     ),
-                    _react2.default.createElement('input', { id: 'myform-phone', className: 'form-control' })
+                    _react2.default.createElement('input', { id: 'myform-phone', className: 'form-control', autoComplete: 'off' })
                 ),
                 _react2.default.createElement(
                     'button',
@@ -12287,7 +12287,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
             }, {
               key: 'setInitialModel',
               value: function setInitialModel(model) {
-                var initialModel = {};
+                var initialModel = this.state.model;
 
                 Object.entries(model).forEach(function (_ref) {
                   var _ref2 = _slicedToArray(_ref, 2),
@@ -14185,25 +14185,27 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
               rules = _ref2[1];
 
           var errors = [];
-          var value = model[name].value;
           var isValid = typeof validationErrors.isValid !== 'undefined' ? validationErrors.isValid : true;
 
-          Object.entries(rules).forEach(function (_ref3) {
-            var _ref4 = _slicedToArray(_ref3, 2),
-                rule = _ref4[0],
-                condition = _ref4[1];
+          if (model[name]) {
+            var value = model[name].value;
+            Object.entries(rules).forEach(function (_ref3) {
+              var _ref4 = _slicedToArray(_ref3, 2),
+                  rule = _ref4[0],
+                  condition = _ref4[1];
 
-            var validatedRules = (0, _rules2.default)(rule, value, condition);
-            if (!validatedRules) {
-              var validationError = {
-                rule: rule,
-                condition: condition
-              };
-              errors.push(validationError);
-            } else if ((typeof validatedRules === 'undefined' ? 'undefined' : _typeof(validatedRules)) === 'object') {
-              errors.push(validatedRules);
-            }
-          });
+              var validatedRules = (0, _rules2.default)(rule, value, condition);
+              if (!validatedRules) {
+                var validationError = {
+                  rule: rule,
+                  condition: condition
+                };
+                errors.push(validationError);
+              } else if ((typeof validatedRules === 'undefined' ? 'undefined' : _typeof(validatedRules)) === 'object') {
+                errors.push(validatedRules);
+              }
+            });
+          }
 
           validationErrors.fields[name] = {
             errors: errors,
