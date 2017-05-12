@@ -33,7 +33,7 @@ class InlineFormValidator extends React.Component {
             validatorName: this.props.name,
             validatorBindInput: this.props.bindInput,
             validatorAttributes: this.props.getSchema,
-            validatorCanSubmit: this.props.isButtonDisabled,
+            validatorCanSubmit: !this.props.isButtonDisabled,
             validatorResetForm: this.props.resetForm,
         };
     }

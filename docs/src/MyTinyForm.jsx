@@ -18,7 +18,7 @@ const MyTinyForm = () => (
     >
         <InlineForm.Field resetOnEscape>
             <label htmlFor="tinyform-name">Name</label>
-            <input id="tinyform-name" className="form-control" />
+            <input id="tinyform-name" className="form-control" autoComplete="off" />
         </InlineForm.Field>
         <InlineForm.Errors />
         <InlineForm.Cancel>
