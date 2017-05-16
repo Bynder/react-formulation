@@ -49,7 +49,7 @@ class InlineFormValidator extends React.Component {
     onSubmit(e: Event) {
         e.preventDefault();
 
-        if (this.props.isButtonDisabled) {
+        if (!this.props.isButtonDisabled) {
             const submitValue = {};
             Object.entries(this.props.model).forEach(([model, attributes]) => {
                 submitValue.name = model;
