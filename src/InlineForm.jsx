@@ -40,9 +40,18 @@ class InlineFormValidator extends React.Component {
 
     componentWillMount() {
         const { name, initialValue } = this.props;
+
         this.props.setInitialModel({
             [name]: initialValue,
         });
+    }
+
+    componentWillReceiveProps(nextProps: Props) {
+        if (nextProps.name && nextProps.initialValue !== this.props.initialValue) {
+            nextProps.setInitialModel({
+                [nextProps.name]: nextProps.initialValue,
+            });
+        }
     }
 
     @autobind

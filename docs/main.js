@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "f88a0d4e5fe233274cc1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "80f34591a482be206f71"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -13747,6 +13747,13 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                 initialValue = _props.initialValue;
 
             this.props.setInitialModel(_defineProperty({}, name, initialValue));
+          }
+        }, {
+          key: 'componentWillReceiveProps',
+          value: function componentWillReceiveProps(nextProps) {
+            if (nextProps.name && nextProps.initialValue !== this.props.initialValue) {
+              nextProps.setInitialModel(_defineProperty({}, nextProps.name, nextProps.initialValue));
+            }
           }
         }, {
           key: 'onSubmit',
