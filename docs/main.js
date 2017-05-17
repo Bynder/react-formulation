@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "80f34591a482be206f71"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c1bfa58e164573548698"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -13776,7 +13776,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
         }, {
           key: 'render',
           value: function render() {
-            return _react2.default.createElement('form', { onSubmit: this.onSubmit }, this.props.children);
+            return _react2.default.createElement('form', { onSubmit: this.onSubmit, className: this.props.className }, this.props.children);
           }
         }]);
 
