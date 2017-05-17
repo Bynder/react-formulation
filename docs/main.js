@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "f88a0d4e5fe233274cc1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4da93cc3b3e030f51f18"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -12321,6 +12321,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                 model: initialModel || {},
                 isTouched: false,
                 schema: (0, _validateSchema.getAllValidationErrors)(_this.schema, initialModel),
+                initialModel: initialModel,
                 validateOn: validateOn,
                 customMessages: customMessages
               };
@@ -13749,6 +13750,13 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
             this.props.setInitialModel(_defineProperty({}, name, initialValue));
           }
         }, {
+          key: 'componentWillReceiveProps',
+          value: function componentWillReceiveProps(nextProps) {
+            if (nextProps.name && nextProps.initialValue !== this.props.initialValue) {
+              nextProps.setInitialModel(_defineProperty({}, nextProps.name, nextProps.initialValue));
+            }
+          }
+        }, {
           key: 'onSubmit',
           value: function onSubmit(e) {
             e.preventDefault();
@@ -13769,7 +13777,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
         }, {
           key: 'render',
           value: function render() {
-            return _react2.default.createElement('form', { onSubmit: this.onSubmit }, this.props.children);
+            return _react2.default.createElement('form', { onSubmit: this.onSubmit, className: this.props.className }, this.props.children);
           }
         }]);
 
