@@ -19,7 +19,7 @@ const getAllValidationErrors = (schema: Object, model: Object) => {
             validationErrors.isValid :
             true;
 
-        if (model[name]) {
+        if (model[name] && rules) {
             const value = model[name].value;
             Object.entries(rules).forEach(([rule, condition]) => {
                 const validatedRules = validateRules(rule, value, condition);
@@ -66,6 +66,21 @@ const getValidationErrors = (
         });
     }
 
+    const field = {
+        isTouched: true,
+        isValid: true,
+        errors,
+    };
+
+    if (!rules) {
+        fields[name] = field;
+
+        return {
+            isValid: isValid && !errors.length,
+            fields,
+        };
+    }
+
     Object.entries(rules).forEach(([rule, condition]) => {
         const validatedRules = validateRules(rule, value, condition);
         if (!validatedRules) {
@@ -80,7 +95,7 @@ const getValidationErrors = (
     });
 
     fields[name] = {
-        isTouched: true,
+        ...field,
         isValid: !errors.length,
         errors,
     };
