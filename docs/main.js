@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c1bfa58e164573548698"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4da93cc3b3e030f51f18"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -12321,6 +12321,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                 model: initialModel || {},
                 isTouched: false,
                 schema: (0, _validateSchema.getAllValidationErrors)(_this.schema, initialModel),
+                initialModel: initialModel,
                 validateOn: validateOn,
                 customMessages: customMessages
               };

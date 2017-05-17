@@ -52,6 +52,7 @@ export default function withValidation(configuration: Object) {
                     model: initialModel || {},
                     isTouched: false,
                     schema: getAllValidationErrors(this.schema, initialModel),
+                    initialModel,
                     validateOn,
                     customMessages,
                 };
