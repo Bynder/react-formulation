@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "4da93cc3b3e030f51f18"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "ab4886e1e85e7a745f8f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -14289,7 +14289,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
           var errors = [];
           var isValid = typeof validationErrors.isValid !== 'undefined' ? validationErrors.isValid : true;
 
-          if (model[name]) {
+          if (model[name] && rules) {
             var value = model[name].value;
             (0, _entries2.default)(rules).forEach(function (_ref3) {
               var _ref4 = _slicedToArray(_ref3, 2),
@@ -14339,6 +14339,21 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
           });
         }
 
+        var field = {
+          isTouched: true,
+          isValid: true,
+          errors: errors
+        };
+
+        if (!rules) {
+          fields[name] = field;
+
+          return {
+            isValid: isValid && !errors.length,
+            fields: fields
+          };
+        }
+
         (0, _entries2.default)(rules).forEach(function (_ref7) {
           var _ref8 = _slicedToArray(_ref7, 2),
               rule = _ref8[0],
@@ -14356,11 +14371,10 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
           }
         });
 
-        fields[name] = {
-          isTouched: true,
+        fields[name] = Object.assign({}, field, {
           isValid: !errors.length,
           errors: errors
-        };
+        });
 
         return {
           isValid: isValid && !errors.length,
