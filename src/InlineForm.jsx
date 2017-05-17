@@ -19,6 +19,7 @@ type Props = {
     onSubmit: () => void,
     model: Object,
     resetForm: () => void,
+    className: string,
 };
 
 const defaultStyle = {
@@ -70,7 +71,7 @@ class InlineFormValidator extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit} className={this.props.className}>
                 {this.props.children}
             </form>
         );
