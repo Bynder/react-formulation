@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ab4886e1e85e7a745f8f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e7dbe59e0b4e32ee2ad5"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -12159,6 +12159,12 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       var _entries2 = _interopRequireDefault(_entries);
 
+      var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+        return typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);
+      } : function (obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);
+      };
+
       var _slicedToArray = function () {
         function sliceIterator(arr, i) {
           var _arr = [];var _n = true;var _d = false;var _e = undefined;try {
@@ -12275,7 +12281,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
       }
 
       function withValidation(configuration) {
-        return function Validation(WrappedComponent) {
+        var Validation = function Validation(WrappedComponent) {
           var _desc, _value, _class;
 
           var ValidationWrapper = (_class = function (_React$Component) {
@@ -12532,6 +12538,12 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
           return ValidationWrapper;
         };
+
+        if ((typeof configuration === 'undefined' ? 'undefined' : _typeof(configuration)) === 'object') {
+          return Validation;
+        }
+
+        return Validation(configuration);
       }
       module.exports = exports['default'];
 
@@ -13898,14 +13910,21 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
             children = _ref5.children,
             props = _objectWithoutProperties(_ref5, ['style', 'children']);
 
-        return _react2.default.createElement('div', _extends({ style: style || defaultStyle }, props), _react2.default.Children.map(children, function (child) {
-          if ((typeof child === 'undefined' ? 'undefined' : _typeof(child)) === 'object') {
-            return _react2.default.cloneElement(child, {
-              disabled: !context.validatorCanSubmit
-            });
-          }
-          return null;
-        }));
+        if (children && children.length > 1) {
+          return _react2.default.createElement('div', _extends({ style: style || defaultStyle }, props), _react2.default.Children.map(children, function (child) {
+            if ((typeof child === 'undefined' ? 'undefined' : _typeof(child)) === 'object') {
+              return _react2.default.cloneElement(child, {
+                disabled: !context.validatorCanSubmit
+              });
+            }
+            return null;
+          }));
+        }
+
+        var child = _react2.default.Children.only(children);
+        return _react2.default.cloneElement(child, {
+          disabled: !context.validatorCanSubmit
+        });
       };
 
       InlineFormSubmit.propTypes = {
@@ -13922,18 +13941,31 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
             children = _ref6.children,
             props = _objectWithoutProperties(_ref6, ['style', 'children']);
 
-        return _react2.default.createElement('div', _extends({ style: style || defaultStyle }, props), _react2.default.Children.map(children, function (child) {
-          var onClick = function onClick() {
-            context.validatorResetForm();
-            if (child.props.onClick) {
-              child.props.onClick();
-            }
-          };
+        if (children && children.length > 1) {
+          return _react2.default.createElement('div', _extends({ style: style || defaultStyle }, props), _react2.default.Children.map(children, function (child) {
+            var onClick = function onClick() {
+              context.validatorResetForm();
+              if (child.props.onClick) {
+                child.props.onClick();
+              }
+            };
+            return _react2.default.cloneElement(child, {
+              onClick: onClick
+            });
+          }));
+        }
 
-          return _react2.default.cloneElement(child, {
-            onClick: onClick
-          });
-        }));
+        var child = _react2.default.Children.only(children);
+        var onClick = function onClick() {
+          context.validatorResetForm();
+          if (child.props.onClick) {
+            child.props.onClick();
+          }
+        };
+
+        return _react2.default.cloneElement(child, {
+          onClick: onClick
+        });
       };
 
       InlineFormCancel.propTypes = {
@@ -13945,7 +13977,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
         validatorResetForm: _propTypes2.default.func
       };
 
-      var InlineForm = (0, _withValidation2.default)({})(InlineFormValidator);
+      var InlineForm = (0, _withValidation2.default)(InlineFormValidator);
 
       InlineForm.Field = InlineFormField;
       InlineForm.Errors = InlineFormErrors;
@@ -14177,7 +14209,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       var validationRules = {
         required: function required(val) {
-          return val && val.length;
+          return val && val.trim().length;
         },
         minLength: function minLength(val, _minLength) {
           return val && val.length > 0 ? val.length > _minLength - 1 : true;

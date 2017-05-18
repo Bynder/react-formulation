@@ -9,8 +9,8 @@ import {
     getAllValidationErrors,
 } from './utils/validateSchema';
 
-export default function withValidation(configuration: Object) {
-    return function Validation(WrappedComponent: ReactClass<any>) {
+export default function withValidation(configuration: Object | ReactClass<any>) {
+    const Validation = function Validation(WrappedComponent: ReactClass<any>) {
         class ValidationWrapper extends React.Component {
             constructor(props: Props) {
                 super(props);
@@ -260,4 +260,10 @@ export default function withValidation(configuration: Object) {
 
         return ValidationWrapper;
     };
+
+    if (typeof configuration === 'object') {
+        return Validation;
+    }
+
+    return Validation(configuration);
 }
