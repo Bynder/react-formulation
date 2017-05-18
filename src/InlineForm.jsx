@@ -181,20 +181,29 @@ const InlineFormSubmit = ({
     style,
     children,
     ...props
-}, context) => (
-    <div style={style || defaultStyle} {...props}>
-        {React.Children.map(children,
-            (child) => {
-                if (typeof child === 'object') {
-                    return React.cloneElement(child, {
-                        disabled: !context.validatorCanSubmit,
-                    });
-                }
-                return null;
-            },
-        )}
-    </div>
-);
+}, context) => {
+    if (children && children.length > 1) {
+        return (
+            <div style={style || defaultStyle} {...props}>
+                {React.Children.map(children,
+                    (child) => {
+                        if (typeof child === 'object') {
+                            return React.cloneElement(child, {
+                                disabled: !context.validatorCanSubmit,
+                            });
+                        }
+                        return null;
+                    },
+                )}
+            </div>
+        );
+    }
+
+    const child = React.Children.only(children);
+    return React.cloneElement(child, {
+        disabled: !context.validatorCanSubmit,
+    });
+};
 
 InlineFormSubmit.propTypes = {
     style: PropTypes.objectOf(
@@ -211,24 +220,39 @@ const InlineFormCancel = ({
     style,
     children,
     ...props
-}, context) => (
-    <div style={style || defaultStyle} {...props}>
-        {React.Children.map(children,
-            (child) => {
-                const onClick = () => {
-                    context.validatorResetForm();
-                    if (child.props.onClick) {
-                        child.props.onClick();
-                    }
-                };
+}, context) => {
+    if (children && children.length > 1) {
+        return (
+            <div style={style || defaultStyle} {...props}>
+                {React.Children.map(children,
+                    (child) => {
+                        const onClick = () => {
+                            context.validatorResetForm();
+                            if (child.props.onClick) {
+                                child.props.onClick();
+                            }
+                        };
+                        return React.cloneElement(child, {
+                            onClick,
+                        });
+                    },
+                )}
+            </div>
+        );
+    }
 
-                return React.cloneElement(child, {
-                    onClick,
-                });
-            },
-        )}
-    </div>
-);
+    const child = React.Children.only(children);
+    const onClick = () => {
+        context.validatorResetForm();
+        if (child.props.onClick) {
+            child.props.onClick();
+        }
+    };
+
+    return React.cloneElement(child, {
+        onClick,
+    });
+};
 
 InlineFormCancel.propTypes = {
     style: PropTypes.objectOf(

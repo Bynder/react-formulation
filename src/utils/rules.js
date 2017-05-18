@@ -5,7 +5,7 @@ const regExp = {
 };
 
 const validationRules = {
-    required: val => (val && val.length),
+    required: val => (val && val.trim().length),
     minLength: (val, minLength) => ((val && val.length > 0) ? val.length > minLength - 1 : true),
     maxLength: (val, maxLength) => ((val && val.length > 0) ? val.length <= maxLength : true),
     phoneNumbers: val => ((val && val.length > 0) ? regExp.phoneNumbers.test(val) : true),
