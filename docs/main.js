@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0ee056e59950622fc897"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e7dbe59e0b4e32ee2ad5"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -12159,6 +12159,12 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       var _entries2 = _interopRequireDefault(_entries);
 
+      var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+        return typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);
+      } : function (obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);
+      };
+
       var _slicedToArray = function () {
         function sliceIterator(arr, i) {
           var _arr = [];var _n = true;var _d = false;var _e = undefined;try {
@@ -12275,7 +12281,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
       }
 
       function withValidation(configuration) {
-        return function Validation(WrappedComponent) {
+        var Validation = function Validation(WrappedComponent) {
           var _desc, _value, _class;
 
           var ValidationWrapper = (_class = function (_React$Component) {
@@ -12532,6 +12538,12 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
           return ValidationWrapper;
         };
+
+        if ((typeof configuration === 'undefined' ? 'undefined' : _typeof(configuration)) === 'object') {
+          return Validation;
+        }
+
+        return Validation(configuration);
       }
       module.exports = exports['default'];
 
@@ -13965,7 +13977,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
         validatorResetForm: _propTypes2.default.func
       };
 
-      var InlineForm = (0, _withValidation2.default)({})(InlineFormValidator);
+      var InlineForm = (0, _withValidation2.default)(InlineFormValidator);
 
       InlineForm.Field = InlineFormField;
       InlineForm.Errors = InlineFormErrors;

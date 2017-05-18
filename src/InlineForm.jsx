@@ -265,7 +265,7 @@ InlineFormCancel.contextTypes = {
     validatorResetForm: PropTypes.func,
 };
 
-const InlineForm = withValidation({})(InlineFormValidator);
+const InlineForm = withValidation(InlineFormValidator);
 
 InlineForm.Field = InlineFormField;
 InlineForm.Errors = InlineFormErrors;
