@@ -47,7 +47,6 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                         };
                     });
                 }
-
                 this.state = {
                     model: initialModel || {},
                     isTouched: false,
@@ -136,13 +135,13 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
             @autobind
             validateInput(e: Event) {
                 const { name, value } = e.target;
-
                 this.setState({
                     schema: getValidationErrors(
                         this.schema,
                         name,
                         value,
                         this.state.schema,
+                        this.state.model,
                     ),
                 });
             }

@@ -12,13 +12,18 @@ type Props = {
 }
 
 @withValidation({
-    validateOn: 'change',
+    validateOn: 'blur',
     schema: {
         firstname: {
             minLength: 2,
         },
         lastname: {
             required: true,
+            isEqualTo: {
+                dependsOn: 'firstname',
+                test: (val1, val2) => (val1 === val2),
+                message: 'last name is not equal to firstname',
+            },
         },
         phone: {
             phoneNumbers: true,
