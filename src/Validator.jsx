@@ -8,7 +8,7 @@ const ValidatorForm = ({ onSubmit, children, ...props }, context) => {
         const validatedFields = context.validatorGetAllErrors();
         e.preventDefault();
 
-        if ((context.validateOn !== 'submit' && context.validatorCanSubmit) ||
+        if ((context.validateOn !== 'submit' && validatedFields.isValid) ||
                 (context.validateOn === 'submit' && validatedFields.isValid)) {
             onSubmit(e);
         }
