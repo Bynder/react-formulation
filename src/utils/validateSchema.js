@@ -28,7 +28,7 @@ const getAllValidationErrors = (schema: Object, model: Object) => {
                         condition,
                     };
                     errors.push(validationError);
-                } else if (typeof validatedRules === 'object') {
+                } else if (typeof validatedRules === 'object' || typeof validatedRules === 'string') {
                     errors.push(validatedRules);
                 }
             });

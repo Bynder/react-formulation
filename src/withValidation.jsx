@@ -80,6 +80,7 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                 });
                 this.setState({ model: initialModel, initialModel });
                 this.getAllValidationErrors(initialModel);
+                this.resetValidation();
             }
 
             @autobind
@@ -205,6 +206,10 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                 this.setState({
                     model: this.state.initialModel,
                 });
+
+                if (this.state.validateOn !== 'submit') {
+                    this.getAllValidationErrors(this.state.initialModel);
+                }
             }
 
             @autobind
@@ -224,7 +229,10 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                     model,
                     isTouched: false,
                 });
-                this.getAllValidationErrors(model);
+
+                if (this.state.validateOn !== 'submit') {
+                    this.getAllValidationErrors(model);
+                }
             }
 
             render() {
