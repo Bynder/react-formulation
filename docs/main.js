@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "eb7864ba28b0c0a2c599"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "bb9e64eb2962cff3f526"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -14355,13 +14355,14 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
           };
         }
 
+        var isFormValid = true;
+
         (0, _entries2.default)(schema).forEach(function (_ref) {
           var _ref2 = _slicedToArray(_ref, 2),
               name = _ref2[0],
               rules = _ref2[1];
 
           var errors = [];
-          var isValid = typeof validationErrors.isValid !== 'undefined' ? validationErrors.isValid : true;
 
           if (model[name] && rules) {
             var value = model[name].value;
@@ -14388,8 +14389,13 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
             isValid: !errors.length,
             isTouched: false
           };
-          validationErrors.isValid = isValid && !errors.length;
+
+          if (errors.length && isFormValid) {
+            isFormValid = false;
+          }
         });
+
+        validationErrors.isValid = isFormValid;
 
         return validationErrors;
       };
