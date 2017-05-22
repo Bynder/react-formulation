@@ -15,14 +15,18 @@ type Props = {
     validateOn: 'blur',
     schema: {
         firstname: {
+            required: true,
             minLength: 2,
         },
         lastname: {
             required: true,
+        },
+        confirmLastname: {
+            required: true,
             isEqualTo: {
-                dependsOn: 'firstname',
+                dependsOn: 'lastname',
                 test: (val1, val2) => (val1 === val2),
-                message: 'last name is not equal to firstname',
+                message: 'this is not equal to lastname',
             },
         },
         phone: {
@@ -35,9 +39,10 @@ class MyForm extends React.Component {
 
     componentWillMount() {
         this.props.setInitialModel({
-            firstname: 'Foo',
-            lastname: 'Bar',
-            phone: '0123456789',
+            firstname: '',
+            lastname: '',
+            confirmLastname: '',
+            phone: '',
         });
     }
 
@@ -49,6 +54,7 @@ class MyForm extends React.Component {
 
         console.log(model.firstname.value);
         console.log(model.lastname.value);
+        console.log(model.confirmLastname.value);
         console.log(model.phone.value);
     }
 
@@ -67,6 +73,10 @@ class MyForm extends React.Component {
                 <Validator name="lastname">
                     <label htmlFor="myform-lastname">Last name</label>
                     <input id="myform-lastname" className="form-control" autoComplete="off" />
+                </Validator>
+                <Validator name="confirmLastname">
+                    <label htmlFor="myform-confirmLastname">Confirm last name</label>
+                    <input id="myform-confirmLastname" className="form-control" autoComplete="off" />
                 </Validator>
                 <Validator name="phone">
                     <label htmlFor="myform-phone">Phone number</label>
