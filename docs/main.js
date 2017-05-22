@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7595442ec0b313a5c029"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "239ec3b0383f7e2eab97"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -10313,7 +10313,7 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
 }
 
 var MyForm = (_dec = (0, _reactFormulation.withValidation)({
-    validateOn: 'blur',
+    validateOn: 'change',
     schema: {
         firstname: {
             required: true,
@@ -10349,10 +10349,10 @@ var MyForm = (_dec = (0, _reactFormulation.withValidation)({
         key: 'componentWillMount',
         value: function componentWillMount() {
             this.props.setInitialModel({
-                firstname: '',
-                lastname: '',
+                firstname: 'Foo',
+                lastname: 'Bar',
                 confirmLastname: '',
-                phone: ''
+                phone: '0123456789'
             });
         }
     }, {

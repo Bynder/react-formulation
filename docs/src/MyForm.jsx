@@ -12,7 +12,7 @@ type Props = {
 }
 
 @withValidation({
-    validateOn: 'blur',
+    validateOn: 'change',
     schema: {
         firstname: {
             required: true,
@@ -39,10 +39,10 @@ class MyForm extends React.Component {
 
     componentWillMount() {
         this.props.setInitialModel({
-            firstname: '',
-            lastname: '',
+            firstname: 'Foo',
+            lastname: 'Bar',
             confirmLastname: '',
-            phone: '',
+            phone: '0123456789',
         });
     }
 
