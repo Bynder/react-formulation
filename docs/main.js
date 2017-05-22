@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e7dbe59e0b4e32ee2ad5"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "208d5ba582c24e17d4ff"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -12341,7 +12341,9 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                   validatorBindInput: this.bindInput,
                   validatorAttributes: this.getSchema,
                   validatorCanSubmit: this.state.schema.isValid && this.state.isTouched,
-                  validatorMessages: this.state.customMessages
+                  validatorMessages: this.state.customMessages,
+                  validatorGetAllErrors: this.getAllValidationErrors,
+                  validateOn: this.state.validateOn
                 };
               }
             }, {
@@ -12397,9 +12399,11 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
               key: 'getAllValidationErrors',
               value: function getAllValidationErrors(initialModel) {
                 var model = initialModel || this.state.model;
+                var schema = (0, _validateSchema.getAllValidationErrors)(this.schema, model);
                 this.setState({
-                  schema: (0, _validateSchema.getAllValidationErrors)(this.schema, model)
+                  schema: schema
                 });
+                return schema;
               }
             }, {
               key: 'getSchema',
@@ -12428,6 +12432,8 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
                 if (this.state.validateOn === 'change') {
                   this.validateInput(e);
+                } else if (this.state.validateOn === 'submit' && this.state.schema.fields[name].isValid !== null) {
+                  this.resetValidation();
                 }
 
                 if (!this.state.isTouched) {
@@ -12531,7 +12537,9 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
             validatorBindInput: _propTypes2.default.func,
             validatorAttributes: _propTypes2.default.func,
             validatorCanSubmit: _propTypes2.default.bool,
-            validatorMessages: _propTypes2.default.object
+            validatorMessages: _propTypes2.default.object,
+            validatorGetAllErrors: _propTypes2.default.func,
+            validateOn: _propTypes2.default.string
           };
 
           ValidationWrapper.displayName = 'Validator(' + (0, _getComponentName2.default)(WrappedComponent) + ')';
@@ -13773,16 +13781,19 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
           value: function onSubmit(e) {
             e.preventDefault();
 
-            if (!this.props.isButtonDisabled) {
-              var submitValue = {};
-              (0, _entries2.default)(this.props.model).forEach(function (_ref) {
-                var _ref2 = _slicedToArray(_ref, 2),
-                    model = _ref2[0],
-                    attributes = _ref2[1];
+            var submitValue = {};
+            var validatedForm = this.props.validateForm();
 
-                submitValue.name = model;
-                submitValue.value = attributes.value;
-              });
+            (0, _entries2.default)(this.props.model).forEach(function (_ref) {
+              var _ref2 = _slicedToArray(_ref, 2),
+                  model = _ref2[0],
+                  attributes = _ref2[1];
+
+              submitValue.name = model;
+              submitValue.value = attributes.value;
+            });
+
+            if (this.props.validateOn === 'submit' && validatedForm.fields[this.props.name].isValid || this.props.validateOn !== 'submit' && !this.props.isButtonDisabled) {
               this.props.onSubmit(submitValue);
             }
           }
@@ -14046,12 +14057,14 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
             children = _ref.children,
             props = _objectWithoutProperties(_ref, ['onSubmit', 'children']);
 
-        var onFormSubmit = onSubmit;
-        if (!context.validatorCanSubmit) {
-          onFormSubmit = function onFormSubmit(e) {
-            e.preventDefault();
-          };
-        }
+        var onFormSubmit = function onFormSubmit(e) {
+          var validatedFields = context.validatorGetAllErrors();
+          e.preventDefault();
+
+          if (context.validateOn !== 'submit' && context.validatorCanSubmit || context.validateOn === 'submit' && validatedFields.isValid) {
+            onSubmit(e);
+          }
+        };
 
         return _react2.default.createElement('form', _extends({
           onSubmit: onFormSubmit
@@ -14064,7 +14077,9 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
       };
 
       ValidatorForm.contextTypes = {
-        validatorCanSubmit: _propTypes2.default.bool
+        validatorCanSubmit: _propTypes2.default.bool,
+        validatorGetAllErrors: _propTypes2.default.func,
+        validateOn: _propTypes2.default.string
       };
 
       var Validator = function Validator(_ref2, context) {
@@ -14079,7 +14094,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
             return _react2.default.cloneElement(child, Object.assign({}, context.validatorBindInput(name)));
           }
           return null;
-        }), !hideErrors && schema.isValid === false && schema.isTouched ? _react2.default.createElement(ErrorsBlock, {
+        }), !hideErrors && schema.isValid === false && (schema.isTouched || context.validateOn === 'submit') ? _react2.default.createElement(ErrorsBlock, {
           errors: schema.errors
         }) : null);
       };
@@ -14092,7 +14107,8 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       Validator.contextTypes = {
         validatorBindInput: _propTypes2.default.func,
-        validatorAttributes: _propTypes2.default.func
+        validatorAttributes: _propTypes2.default.func,
+        validateOn: _propTypes2.default.string
       };
 
       var ErrorsBlock = function ErrorsBlock(_ref3, context) {
@@ -14346,7 +14362,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
             isValid: !errors.length,
             isTouched: false
           };
-          validationErrors.isValid = isValid;
+          validationErrors.isValid = isValid && !errors.length;
         });
 
         return validationErrors;

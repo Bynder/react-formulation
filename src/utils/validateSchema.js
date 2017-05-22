@@ -40,7 +40,7 @@ const getAllValidationErrors = (schema: Object, model: Object) => {
             isValid: !errors.length,
             isTouched: false,
         };
-        validationErrors.isValid = isValid;
+        validationErrors.isValid = isValid && !errors.length;
     });
 
     return validationErrors;
