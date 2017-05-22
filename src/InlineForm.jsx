@@ -20,6 +20,8 @@ type Props = {
     model: Object,
     resetForm: () => void,
     className: string,
+    validateForm: () => void,
+    validateOn: string,
 };
 
 const defaultStyle = {
@@ -59,12 +61,16 @@ class InlineFormValidator extends React.Component {
     onSubmit(e: Event) {
         e.preventDefault();
 
-        if (!this.props.isButtonDisabled) {
-            const submitValue = {};
-            Object.entries(this.props.model).forEach(([model, attributes]) => {
-                submitValue.name = model;
-                submitValue.value = attributes.value;
-            });
+        const submitValue = {};
+        const validatedForm = this.props.validateForm();
+
+        Object.entries(this.props.model).forEach(([model, attributes]) => {
+            submitValue.name = model;
+            submitValue.value = attributes.value;
+        });
+
+        if ((this.props.validateOn === 'submit' && validatedForm.fields[this.props.name].isValid) ||
+                (this.props.validateOn !== 'submit' && !this.props.isButtonDisabled)) {
             this.props.onSubmit(submitValue);
         }
     }

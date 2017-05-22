@@ -63,6 +63,8 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                     validatorAttributes: this.getSchema,
                     validatorCanSubmit: this.state.schema.isValid && this.state.isTouched,
                     validatorMessages: this.state.customMessages,
+                    validatorGetAllErrors: this.getAllValidationErrors,
+                    validateOn: this.state.validateOn,
                 };
             }
 
@@ -122,9 +124,11 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
             @autobind
             getAllValidationErrors(initialModel: Object) {
                 const model = initialModel || this.state.model;
+                const schema = getAllValidationErrors(this.schema, model);
                 this.setState({
-                    schema: getAllValidationErrors(this.schema, model),
+                    schema,
                 });
+                return schema;
             }
 
             @autobind
@@ -154,6 +158,8 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
 
                 if (this.state.validateOn === 'change') {
                     this.validateInput(e);
+                } else if (this.state.validateOn === 'submit' && this.state.schema.fields[name].isValid !== null) {
+                    this.resetValidation();
                 }
 
                 if (!this.state.isTouched) {
@@ -218,6 +224,7 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                     model,
                     isTouched: false,
                 });
+                this.getAllValidationErrors(model);
             }
 
             render() {
@@ -253,6 +260,8 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
             validatorAttributes: PropTypes.func,
             validatorCanSubmit: PropTypes.bool,
             validatorMessages: PropTypes.object,
+            validatorGetAllErrors: PropTypes.func,
+            validateOn: PropTypes.string,
         };
 
         ValidationWrapper.displayName = `Validator(${getComponentName(WrappedComponent)})`;

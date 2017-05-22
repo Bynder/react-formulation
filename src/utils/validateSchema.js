@@ -13,11 +13,10 @@ const getAllValidationErrors = (schema: Object, model: Object) => {
         };
     }
 
+    let isFormValid = true;
+
     Object.entries(schema).forEach(([name, rules]) => {
         const errors = [];
-        const isValid = (typeof validationErrors.isValid !== 'undefined') ?
-            validationErrors.isValid :
-            true;
 
         if (model[name] && rules) {
             const value = model[name].value;
@@ -40,8 +39,13 @@ const getAllValidationErrors = (schema: Object, model: Object) => {
             isValid: !errors.length,
             isTouched: false,
         };
-        validationErrors.isValid = isValid;
+
+        if (errors.length && isFormValid) {
+            isFormValid = false;
+        }
     });
+
+    validationErrors.isValid = isFormValid;
 
     return validationErrors;
 };

@@ -4,12 +4,15 @@ import PropTypes from 'prop-types';
 import defaultMessages from './utils/validationMessages';
 
 const ValidatorForm = ({ onSubmit, children, ...props }, context) => {
-    let onFormSubmit = onSubmit;
-    if (!context.validatorCanSubmit) {
-        onFormSubmit = (e) => {
-            e.preventDefault();
-        };
-    }
+    const onFormSubmit = (e) => {
+        const validatedFields = context.validatorGetAllErrors();
+        e.preventDefault();
+
+        if ((context.validateOn !== 'submit' && context.validatorCanSubmit) ||
+                (context.validateOn === 'submit' && validatedFields.isValid)) {
+            onSubmit(e);
+        }
+    };
 
     return (
         <form
@@ -28,6 +31,8 @@ ValidatorForm.propTypes = {
 
 ValidatorForm.contextTypes = {
     validatorCanSubmit: PropTypes.bool,
+    validatorGetAllErrors: PropTypes.func,
+    validateOn: PropTypes.string,
 };
 
 const Validator = ({
@@ -49,7 +54,7 @@ const Validator = ({
                     return null;
                 },
             )}
-            {(!hideErrors && schema.isValid === false && schema.isTouched) ? (
+            {(!hideErrors && schema.isValid === false && (schema.isTouched || context.validateOn === 'submit')) ? (
                 <ErrorsBlock
                     errors={schema.errors}
                 />
@@ -67,6 +72,7 @@ Validator.propTypes = {
 Validator.contextTypes = {
     validatorBindInput: PropTypes.func,
     validatorAttributes: PropTypes.func,
+    validateOn: PropTypes.string,
 };
 
 const ErrorsBlock = ({
