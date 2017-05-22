@@ -22,7 +22,7 @@ const getAllValidationErrors = (schema: Object, model: Object) => {
         if (model[name] && rules) {
             const value = model[name].value;
             Object.entries(rules).forEach(([rule, condition]) => {
-                const validatedRules = validateRules(rule, value, condition);
+                const validatedRules = validateRules(rule, value, condition, model);
                 if (!validatedRules) {
                     const validationError = {
                         rule,
@@ -51,6 +51,7 @@ const getValidationErrors = (
     name: string,
     model: Object | string,
     validation: Object,
+    models: Object,
 ) => {
     const errors = [];
     const fields = validation.fields;
@@ -82,7 +83,7 @@ const getValidationErrors = (
     }
 
     Object.entries(rules).forEach(([rule, condition]) => {
-        const validatedRules = validateRules(rule, value, condition);
+        const validatedRules = validateRules(rule, value, condition, models);
         if (!validatedRules) {
             const validationError = {
                 rule,

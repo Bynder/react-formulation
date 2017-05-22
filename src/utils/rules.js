@@ -15,15 +15,18 @@ const validationRules = {
 
 // @TODO: Create posibility for custom validation rules
 // @TODO: Add doc bloc
-const validateRules = (rule: string, value: any, condition?: any) => {
+const validateRules = (rule: string, value: any, condition?: any, models: Object) => {
     let validatedRule = true;
-
-    if (condition && typeof condition === 'object' && !condition.test(value)) {
-        validatedRule = condition.message;
+    if (condition && typeof condition === 'object') {
+        const dependsOn = condition.dependsOn;
+        if (dependsOn && models[dependsOn] && !condition.test(value, models[dependsOn].value)) {
+            validatedRule = condition.message;
+        } else if (!dependsOn && !condition.test(value)) {
+            validatedRule = condition.message;
+        }
     } else if (validationRules[rule]) {
         validatedRule = !!validationRules[rule](value, condition);
     }
-
     return validatedRule;
 };
 

@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "208d5ba582c24e17d4ff"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "eb7864ba28b0c0a2c599"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -10316,10 +10316,21 @@ var MyForm = (_dec = (0, _reactFormulation.withValidation)({
     validateOn: 'change',
     schema: {
         firstname: {
+            required: true,
             minLength: 2
         },
         lastname: {
             required: true
+        },
+        confirmLastname: {
+            required: true,
+            isEqualTo: {
+                dependsOn: 'lastname',
+                test: function test(val1, val2) {
+                    return val1 === val2;
+                },
+                message: 'this is not equal to lastname'
+            }
         },
         phone: {
             phoneNumbers: true
@@ -10340,6 +10351,7 @@ var MyForm = (_dec = (0, _reactFormulation.withValidation)({
             this.props.setInitialModel({
                 firstname: 'Foo',
                 lastname: 'Bar',
+                confirmLastname: '',
                 phone: '0123456789'
             });
         }
@@ -10352,6 +10364,7 @@ var MyForm = (_dec = (0, _reactFormulation.withValidation)({
 
             console.log(model.firstname.value);
             console.log(model.lastname.value);
+            console.log(model.confirmLastname.value);
             console.log(model.phone.value);
         }
     }, {
@@ -10384,6 +10397,16 @@ var MyForm = (_dec = (0, _reactFormulation.withValidation)({
                         'Last name'
                     ),
                     _react2.default.createElement('input', { id: 'myform-lastname', className: 'form-control', autoComplete: 'off' })
+                ),
+                _react2.default.createElement(
+                    _reactFormulation.Validator,
+                    { name: 'confirmLastname' },
+                    _react2.default.createElement(
+                        'label',
+                        { htmlFor: 'myform-confirmLastname' },
+                        'Confirm last name'
+                    ),
+                    _react2.default.createElement('input', { id: 'myform-confirmLastname', className: 'form-control', autoComplete: 'off' })
                 ),
                 _react2.default.createElement(
                     _reactFormulation.Validator,
@@ -12322,7 +12345,6 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                   };
                 });
               }
-
               _this.state = {
                 model: initialModel || {},
                 isTouched: false,
@@ -12418,7 +12440,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                     value = _e$target.value;
 
                 this.setState({
-                  schema: (0, _validateSchema.getValidationErrors)(this.schema, name, value, this.state.schema)
+                  schema: (0, _validateSchema.getValidationErrors)(this.schema, name, value, this.state.schema, this.state.model)
                 });
               }
             }, {
@@ -12504,6 +12526,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                   model: model,
                   isTouched: false
                 });
+                this.getAllValidationErrors(model);
               }
             }, {
               key: 'render',
@@ -14246,15 +14269,18 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       // @TODO: Create posibility for custom validation rules
       // @TODO: Add doc bloc
-      var validateRules = function validateRules(rule, value, condition) {
+      var validateRules = function validateRules(rule, value, condition, models) {
         var validatedRule = true;
-
-        if (condition && (typeof condition === 'undefined' ? 'undefined' : _typeof(condition)) === 'object' && !condition.test(value)) {
-          validatedRule = condition.message;
+        if (condition && (typeof condition === 'undefined' ? 'undefined' : _typeof(condition)) === 'object') {
+          var dependsOn = condition.dependsOn;
+          if (dependsOn && models[dependsOn] && !condition.test(value, models[dependsOn].value)) {
+            validatedRule = condition.message;
+          } else if (!dependsOn && !condition.test(value)) {
+            validatedRule = condition.message;
+          }
         } else if (validationRules[rule]) {
           validatedRule = !!validationRules[rule](value, condition);
         }
-
         return validatedRule;
       };
 
@@ -14344,7 +14370,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                   rule = _ref4[0],
                   condition = _ref4[1];
 
-              var validatedRules = (0, _rules2.default)(rule, value, condition);
+              var validatedRules = (0, _rules2.default)(rule, value, condition, model);
               if (!validatedRules) {
                 var validationError = {
                   rule: rule,
@@ -14368,7 +14394,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
         return validationErrors;
       };
 
-      var getValidationErrors = function getValidationErrors(schema, name, model, validation) {
+      var getValidationErrors = function getValidationErrors(schema, name, model, validation, models) {
         var errors = [];
         var fields = validation.fields;
         var value = model.value ? model.value : model;
@@ -14407,7 +14433,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
               rule = _ref8[0],
               condition = _ref8[1];
 
-          var validatedRules = (0, _rules2.default)(rule, value, condition);
+          var validatedRules = (0, _rules2.default)(rule, value, condition, models);
           if (!validatedRules) {
             var validationError = {
               rule: rule,
