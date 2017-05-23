@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "72a69c2b1c6fe1b39fb2"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "59dbf224d3101ddc82b8"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -10373,11 +10373,6 @@ var MyForm = (_dec = (0, _reactFormulation.withValidation)({
             this.props.clearForm();
         }
     }, {
-        key: 'onLastNameChange',
-        value: function onLastNameChange() {
-            this.props.validateField('confirmLastname');
-        }
-    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -10401,7 +10396,7 @@ var MyForm = (_dec = (0, _reactFormulation.withValidation)({
                         { htmlFor: 'myform-lastname' },
                         'Last name'
                     ),
-                    _react2.default.createElement('input', { id: 'myform-lastname', className: 'form-control', autoComplete: 'off', onKeyDown: this.onLastNameChange })
+                    _react2.default.createElement('input', { id: 'myform-lastname', className: 'form-control', autoComplete: 'off' })
                 ),
                 _react2.default.createElement(
                     _reactFormulation.Validator,
@@ -10446,7 +10441,7 @@ var MyForm = (_dec = (0, _reactFormulation.withValidation)({
     }]);
 
     return MyForm;
-}(_react2.default.Component), (_applyDecoratedDescriptor(_class2.prototype, 'onSubmit', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'onSubmit'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'clearForm', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'clearForm'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'onLastNameChange', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'onLastNameChange'), _class2.prototype)), _class2)) || _class);
+}(_react2.default.Component), (_applyDecoratedDescriptor(_class2.prototype, 'onSubmit', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'onSubmit'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'clearForm', [_autobindDecorator2.default], Object.getOwnPropertyDescriptor(_class2.prototype, 'clearForm'), _class2.prototype)), _class2)) || _class);
 exports.default = MyForm;
 module.exports = exports['default'];
 

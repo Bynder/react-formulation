@@ -7,7 +7,6 @@ import { withValidation, Validator } from '../../lib/react-formulation';
 type Props = {
     setInitialModel: Object => void,
     clearForm: () => void,
-    validateField: string => void,
     model: Object,
     isButtonDisabled: boolean,
 }
@@ -64,11 +63,6 @@ class MyForm extends React.Component {
         this.props.clearForm();
     }
 
-    @autobind
-    onLastNameChange() {
-        this.props.validateField('confirmLastname');
-    }
-
     render() {
         return (
             <Validator.Form onSubmit={this.onSubmit}>
@@ -78,7 +72,7 @@ class MyForm extends React.Component {
                 </Validator>
                 <Validator name="lastname">
                     <label htmlFor="myform-lastname">Last name</label>
-                    <input id="myform-lastname" className="form-control" autoComplete="off" onKeyDown={this.onLastNameChange} />
+                    <input id="myform-lastname" className="form-control" autoComplete="off" />
                 </Validator>
                 <Validator name="confirmLastname">
                     <label htmlFor="myform-confirmLastname">Confirm last name</label>
