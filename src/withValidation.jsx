@@ -152,6 +152,20 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
             }
 
             @autobind
+            validateField(name: string) {
+                const value = this.state.model[name].value;
+                this.setState({
+                    schema: getValidationErrors(
+                        this.schema,
+                        name,
+                        value,
+                        this.state.schema,
+                        this.state.model,
+                    ),
+                });
+            }
+
+            @autobind
             bindToChangeEvent(e: Event) {
                 const { name, value } = e.target;
 
@@ -247,6 +261,7 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                     isTouched: this.state.isTouched,
                     schema: this.state.schema,
                     validateForm: this.getAllValidationErrors,
+                    validateField: this.validateField,
                     resetValidation: this.resetValidation,
                     resetForm: this.resetForm,
                     clearForm: this.clearForm,
