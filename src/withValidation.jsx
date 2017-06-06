@@ -91,13 +91,15 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
 
             @autobind
             setProperty(prop: string, value: any) {
-                return this.setModel({
+                const newModel = this.setModel({
                     ...this.state.model,
                     [prop]: {
                         ...this.state.model[prop],
                         value,
                     },
                 });
+                this.getAllValidationErrors(newModel);
+                return newModel;
             }
 
             @autobind
