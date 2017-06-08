@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "fd4dc817bdd895e552e8"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d21498432bcba2013f83"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -12391,7 +12391,6 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
               key: 'setInitialModel',
               value: function setInitialModel(model) {
                 var initialModel = this.state.model;
-
                 (0, _entries2.default)(model).forEach(function (_ref) {
                   var _ref2 = _slicedToArray(_ref, 2),
                       key = _ref2[0],
@@ -12404,7 +12403,6 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                 });
                 this.setState({ model: initialModel, initialModel: initialModel });
                 this.getAllValidationErrors(initialModel);
-                this.resetValidation();
               }
             }, {
               key: 'setModel',
@@ -12415,9 +12413,11 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
             }, {
               key: 'setProperty',
               value: function setProperty(prop, value) {
-                return this.setModel(Object.assign({}, this.state.model, _defineProperty({}, prop, Object.assign({}, this.state.model[prop], {
+                var newModel = this.setModel(Object.assign({}, this.state.model, _defineProperty({}, prop, Object.assign({}, this.state.model[prop], {
                   value: value
                 }))));
+                this.getAllValidationErrors(newModel);
+                return newModel;
               }
             }, {
               key: 'setInputProperty',
@@ -14289,7 +14289,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
       var regExp = {
         phoneNumbers: /^(?:[0-9\s\-\+\(\)])+$/, // eslint-disable-line no-useless-escape
         noOnlySpaces: /^\s*$/, // https://regex101.com/r/j4DA51/2/
-        email: /^[^@]+@[^@]+.[^@]+$/g };
+        email: /^[^@]+@[^@]+.[^@]+$/ };
 
       var validationRules = {
         required: function required(val) {
