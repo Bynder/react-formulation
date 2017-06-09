@@ -1,7 +1,7 @@
 const regExp = {
     phoneNumbers: /^(?:[0-9\s\-\+\(\)])+$/, // eslint-disable-line no-useless-escape
     noOnlySpaces: /^\s*$/, // https://regex101.com/r/j4DA51/2/
-    email: /^[^@]+@[^@]+.[^@]+$/g, // https://regex101.com/r/dGDGRn/1/tests
+    email: /^[^@]+@[^@]+.[^@]+$/, // https://regex101.com/r/RNreQI/1/tests
 };
 
 const validationRules = {

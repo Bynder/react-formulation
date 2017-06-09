@@ -14,7 +14,6 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
         class ValidationWrapper extends React.Component {
             constructor(props: Props) {
                 super(props);
-
                 this.schema = {};
                 if (configuration && configuration.schema) {
                     this.schema = configuration.schema;
@@ -71,7 +70,6 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
             @autobind
             setInitialModel(model: Object) {
                 const initialModel = this.state.model;
-
                 Object.entries(model).forEach(([key, value]) => {
                     initialModel[key] = {
                         value,
@@ -80,7 +78,6 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                 });
                 this.setState({ model: initialModel, initialModel });
                 this.getAllValidationErrors(initialModel);
-                this.resetValidation();
             }
 
             @autobind
