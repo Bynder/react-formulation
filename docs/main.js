@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d21498432bcba2013f83"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "7feb15850ab3a902e37c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -10452,6 +10452,8 @@ module.exports = exports['default'];
 "use strict";
 /* WEBPACK VAR INJECTION */(function(module) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
+var _extends2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -11367,7 +11369,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
           'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
             test3[letter] = letter;
           });
-          if (Object.keys(Object.assign({}, test3)).join('') !== 'abcdefghijklmnopqrst') {
+          if (Object.keys(_extends2({}, test3)).join('') !== 'abcdefghijklmnopqrst') {
             return false;
           }
 
@@ -11488,7 +11490,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
     /***/function (module, exports, __webpack_require__) {
 
       // Thank's IE8 for his funny defineProperty
-      module.exports = !__webpack_require__(25)(function () {
+      module.exports = !__webpack_require__(24)(function () {
         return Object.defineProperty({}, 'a', { get: function get() {
             return 7;
           } }).a != 7;
@@ -11577,7 +11579,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
           // By explicitly using `prop-types` you are opting into new development behavior.
           // http://fb.me/prop-types-in-prod
           var throwOnDirectAccess = true;
-          module.exports = __webpack_require__(27)(isValidElement, throwOnDirectAccess);
+          module.exports = __webpack_require__(26)(isValidElement, throwOnDirectAccess);
         } else {
           // By explicitly using `prop-types` you are opting into new production behavior.
           // http://fb.me/prop-types-in-prod
@@ -11590,25 +11592,6 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
       /***/
     },
     /* 16 */
-    /***/function (module, exports, __webpack_require__) {
-
-      "use strict";
-      /**
-       * Copyright 2013-present, Facebook, Inc.
-       * All rights reserved.
-       *
-       * This source code is licensed under the BSD-style license found in the
-       * LICENSE file in the root directory of this source tree. An additional grant
-       * of patent rights can be found in the PATENTS file in the same directory.
-       */
-
-      var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-
-      module.exports = ReactPropTypesSecret;
-
-      /***/
-    },
-    /* 17 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -11626,7 +11609,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
         var _prodInvariant = __webpack_require__(4);
 
-        var ReactNoopUpdateQueue = __webpack_require__(19);
+        var ReactNoopUpdateQueue = __webpack_require__(18);
 
         var canDefineProperty = __webpack_require__(8);
         var emptyObject = __webpack_require__(14);
@@ -11734,7 +11717,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       /***/
     },
-    /* 18 */
+    /* 17 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -12075,7 +12058,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       /***/
     },
-    /* 19 */
+    /* 18 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -12179,7 +12162,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       /***/
     },
-    /* 20 */
+    /* 19 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -12188,7 +12171,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       /***/
     },
-    /* 21 */
+    /* 20 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -12205,6 +12188,16 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
         return typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);
       } : function (obj) {
         return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);
+      };
+
+      var _extends = Object.assign || function (target) {
+        for (var i = 1; i < arguments.length; i++) {
+          var source = arguments[i];for (var key in source) {
+            if (Object.prototype.hasOwnProperty.call(source, key)) {
+              target[key] = source[key];
+            }
+          }
+        }return target;
       };
 
       var _slicedToArray = function () {
@@ -12245,7 +12238,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       exports.default = withValidation;
 
-      var _react = __webpack_require__(20);
+      var _react = __webpack_require__(19);
 
       var _react2 = _interopRequireDefault(_react);
 
@@ -12253,7 +12246,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       var _propTypes2 = _interopRequireDefault(_propTypes);
 
-      var _autobindDecorator = __webpack_require__(22);
+      var _autobindDecorator = __webpack_require__(21);
 
       var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
 
@@ -12413,7 +12406,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
             }, {
               key: 'setProperty',
               value: function setProperty(prop, value) {
-                var newModel = this.setModel(Object.assign({}, this.state.model, _defineProperty({}, prop, Object.assign({}, this.state.model[prop], {
+                var newModel = this.setModel(_extends({}, this.state.model, _defineProperty({}, prop, _extends({}, this.state.model[prop], {
                   value: value
                 }))));
                 this.getAllValidationErrors(newModel);
@@ -12422,7 +12415,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
             }, {
               key: 'setInputProperty',
               value: function setInputProperty(prop, value) {
-                return this.setModel(Object.assign({}, this.state.model, _defineProperty({}, prop, Object.assign({}, this.state.model[prop], {
+                return this.setModel(_extends({}, this.state.model, _defineProperty({}, prop, _extends({}, this.state.model[prop], {
                   value: value,
                   isTouched: true
                 }))));
@@ -12511,7 +12504,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                       name = _ref4[0],
                       attributes = _ref4[1];
 
-                  fields[name] = Object.assign({}, attributes, {
+                  fields[name] = _extends({}, attributes, {
                     isTouched: false,
                     isValid: null,
                     errors: []
@@ -12547,7 +12540,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                       name = _ref6[0],
                       attributes = _ref6[1];
 
-                  model[name] = Object.assign({}, attributes, {
+                  model[name] = _extends({}, attributes, {
                     value: '',
                     isTouched: ''
                   });
@@ -12566,7 +12559,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
             }, {
               key: 'render',
               value: function render() {
-                var nextProps = Object.assign({}, this.props, {
+                var nextProps = _extends({}, this.props, {
                   bindInput: this.bindInput,
                   bindToChangeEvent: this.bindToChangeEvent,
                   model: this.state.model,
@@ -12616,7 +12609,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       /***/
     },
-    /* 22 */
+    /* 21 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -12725,7 +12718,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       /***/
     },
-    /* 23 */
+    /* 22 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -12756,7 +12749,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       /***/
     },
-    /* 24 */
+    /* 23 */
     /***/function (module, exports) {
 
       var core = module.exports = { version: '2.4.0' };
@@ -12764,7 +12757,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       /***/
     },
-    /* 25 */
+    /* 24 */
     /***/function (module, exports) {
 
       module.exports = function (exec) {
@@ -12777,7 +12770,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       /***/
     },
-    /* 26 */
+    /* 25 */
     /***/function (module, exports) {
 
       // 7.1.4 ToInteger
@@ -12789,7 +12782,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       /***/
     },
-    /* 27 */
+    /* 26 */
     /***/function (module, exports, __webpack_require__) {
 
       "use strict";
@@ -12808,7 +12801,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
         var invariant = __webpack_require__(2);
         var warning = __webpack_require__(1);
 
-        var ReactPropTypesSecret = __webpack_require__(16);
+        var ReactPropTypesSecret = __webpack_require__(27);
         var checkPropTypes = __webpack_require__(65);
 
         module.exports = function (isValidElement, throwOnDirectAccess) {
@@ -13099,14 +13092,6 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
               return emptyFunction.thatReturnsNull;
             }
 
-            for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
-              var checker = arrayOfTypeCheckers[i];
-              if (typeof checker !== 'function') {
-                warning(false, 'Invalid argument supplid to oneOfType. Expected an array of check functions, but ' + 'received %s at index %s.', getPostfixForTypeWarning(checker), i);
-                return emptyFunction.thatReturnsNull;
-              }
-            }
-
             function validate(props, propName, componentName, location, propFullName) {
               for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
                 var checker = arrayOfTypeCheckers[i];
@@ -13239,9 +13224,6 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
           // This handles more types than `getPropType`. Only used for error messages.
           // See `createPrimitiveTypeChecker`.
           function getPreciseType(propValue) {
-            if (typeof propValue === 'undefined' || propValue === null) {
-              return '' + propValue;
-            }
             var propType = getPropType(propValue);
             if (propType === 'object') {
               if (propValue instanceof Date) {
@@ -13251,23 +13233,6 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
               }
             }
             return propType;
-          }
-
-          // Returns a string that is postfixed to a warning about an invalid type.
-          // For example, "undefined" or "of type array"
-          function getPostfixForTypeWarning(value) {
-            var type = getPreciseType(value);
-            switch (type) {
-              case 'array':
-              case 'object':
-                return 'an ' + type;
-              case 'boolean':
-              case 'date':
-              case 'regexp':
-                return 'a ' + type;
-              default:
-                return type;
-            }
           }
 
           // Returns class name of the object, if any.
@@ -13286,6 +13251,25 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
         /* WEBPACK VAR INJECTION */
       }).call(exports, __webpack_require__(0));
+
+      /***/
+    },
+    /* 27 */
+    /***/function (module, exports, __webpack_require__) {
+
+      "use strict";
+      /**
+       * Copyright 2013-present, Facebook, Inc.
+       * All rights reserved.
+       *
+       * This source code is licensed under the BSD-style license found in the
+       * LICENSE file in the root directory of this source tree. An additional grant
+       * of patent rights can be found in the PATENTS file in the same directory.
+       */
+
+      var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+      module.exports = ReactPropTypesSecret;
 
       /***/
     },
@@ -13337,7 +13321,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
          */
 
         var ReactCurrentOwner = __webpack_require__(7);
-        var ReactComponentTreeHook = __webpack_require__(18);
+        var ReactComponentTreeHook = __webpack_require__(17);
         var ReactElement = __webpack_require__(3);
 
         var checkReactTypeSpec = __webpack_require__(78);
@@ -13665,6 +13649,12 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       var _entries2 = _interopRequireDefault(_entries);
 
+      var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+        return typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);
+      } : function (obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);
+      };
+
       var _extends = Object.assign || function (target) {
         for (var i = 1; i < arguments.length; i++) {
           var source = arguments[i];for (var key in source) {
@@ -13673,12 +13663,6 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
             }
           }
         }return target;
-      };
-
-      var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
-        return typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);
-      } : function (obj) {
-        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);
       };
 
       var _slicedToArray = function () {
@@ -13719,7 +13703,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       var _desc, _value, _class, _desc2, _value2, _class2;
 
-      var _react = __webpack_require__(20);
+      var _react = __webpack_require__(19);
 
       var _react2 = _interopRequireDefault(_react);
 
@@ -13727,15 +13711,15 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       var _propTypes2 = _interopRequireDefault(_propTypes);
 
-      var _autobindDecorator = __webpack_require__(22);
+      var _autobindDecorator = __webpack_require__(21);
 
       var _autobindDecorator2 = _interopRequireDefault(_autobindDecorator);
 
-      var _withValidation = __webpack_require__(21);
+      var _withValidation = __webpack_require__(20);
 
       var _withValidation2 = _interopRequireDefault(_withValidation);
 
-      var _validationMessages = __webpack_require__(23);
+      var _validationMessages = __webpack_require__(22);
 
       var _validationMessages2 = _interopRequireDefault(_validationMessages);
 
@@ -13905,7 +13889,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
         }, {
           key: 'render',
           value: function render() {
-            return _react2.default.cloneElement(this.props.child, Object.assign({}, this.context.validatorBindInput(this.context.validatorName), {
+            return _react2.default.cloneElement(this.props.child, _extends({}, this.context.validatorBindInput(this.context.validatorName), {
               onKeyUp: this.onKeyUp
             }));
           }
@@ -14098,7 +14082,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
         }return target;
       };
 
-      var _react = __webpack_require__(20);
+      var _react = __webpack_require__(19);
 
       var _react2 = _interopRequireDefault(_react);
 
@@ -14106,7 +14090,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       var _propTypes2 = _interopRequireDefault(_propTypes);
 
-      var _validationMessages = __webpack_require__(23);
+      var _validationMessages = __webpack_require__(22);
 
       var _validationMessages2 = _interopRequireDefault(_validationMessages);
 
@@ -14159,7 +14143,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
         return _react2.default.createElement('div', null, _react2.default.Children.map(children, function (child) {
           if ((typeof child === 'undefined' ? 'undefined' : _typeof(child)) === 'object') {
-            return _react2.default.cloneElement(child, Object.assign({}, context.validatorBindInput(name)));
+            return _react2.default.cloneElement(child, _extends({}, context.validatorBindInput(name)));
           }
           return null;
         }), !hideErrors && schema.isValid === false && (schema.isTouched || context.validateOn === 'submit') ? _react2.default.createElement(ErrorsBlock, {
@@ -14240,7 +14224,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       var _Validator2 = _interopRequireDefault(_Validator);
 
-      var _withValidation = __webpack_require__(21);
+      var _withValidation = __webpack_require__(20);
 
       var _withValidation2 = _interopRequireDefault(_withValidation);
 
@@ -14347,6 +14331,16 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
       var _entries = __webpack_require__(9);
 
       var _entries2 = _interopRequireDefault(_entries);
+
+      var _extends = Object.assign || function (target) {
+        for (var i = 1; i < arguments.length; i++) {
+          var source = arguments[i];for (var key in source) {
+            if (Object.prototype.hasOwnProperty.call(source, key)) {
+              target[key] = source[key];
+            }
+          }
+        }return target;
+      };
 
       var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
         return typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);
@@ -14496,7 +14490,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
           }
         });
 
-        fields[name] = Object.assign({}, field, {
+        fields[name] = _extends({}, field, {
           isValid: !errors.length,
           errors: errors
         });
@@ -14532,7 +14526,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
     /***/function (module, exports, __webpack_require__) {
 
       __webpack_require__(64);
-      module.exports = __webpack_require__(24).Object.entries;
+      module.exports = __webpack_require__(23).Object.entries;
 
       /***/
     },
@@ -14663,7 +14657,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
     /***/function (module, exports, __webpack_require__) {
 
       var global = __webpack_require__(11),
-          core = __webpack_require__(24),
+          core = __webpack_require__(23),
           ctx = __webpack_require__(43),
           hide = __webpack_require__(49),
           PROTOTYPE = 'prototype';
@@ -14758,7 +14752,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
     /* 50 */
     /***/function (module, exports, __webpack_require__) {
 
-      module.exports = !__webpack_require__(10) && !__webpack_require__(25)(function () {
+      module.exports = !__webpack_require__(10) && !__webpack_require__(24)(function () {
         return Object.defineProperty(__webpack_require__(45)('div'), 'a', { get: function get() {
             return 7;
           } }).a != 7;
@@ -14908,7 +14902,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
     /* 60 */
     /***/function (module, exports, __webpack_require__) {
 
-      var toInteger = __webpack_require__(26),
+      var toInteger = __webpack_require__(25),
           max = Math.max,
           min = Math.min;
       module.exports = function (index, length) {
@@ -14922,7 +14916,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
     /***/function (module, exports, __webpack_require__) {
 
       // 7.1.15 ToLength
-      var toInteger = __webpack_require__(26),
+      var toInteger = __webpack_require__(25),
           min = Math.min;
       module.exports = function (it) {
         return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
@@ -14992,7 +14986,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
         if (process.env.NODE_ENV !== 'production') {
           var invariant = __webpack_require__(2);
           var warning = __webpack_require__(1);
-          var ReactPropTypesSecret = __webpack_require__(16);
+          var ReactPropTypesSecret = __webpack_require__(27);
           var loggedTypeFailures = {};
         }
 
@@ -15063,7 +15057,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
       // However if one is migrating to the `prop-types` npm library, they will go through the
       // `index.js` entry point, and it will branch depending on the environment.
 
-      var factory = __webpack_require__(27);
+      var factory = __webpack_require__(26);
       module.exports = function (isValidElement) {
         // It is still allowed in 15.5.
         var throwOnDirectAccess = false;
@@ -15087,22 +15081,17 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       var emptyFunction = __webpack_require__(5);
       var invariant = __webpack_require__(2);
-      var ReactPropTypesSecret = __webpack_require__(16);
 
       module.exports = function () {
-        function shim(props, propName, componentName, location, propFullName, secret) {
-          if (secret === ReactPropTypesSecret) {
-            // It is still safe when called from React.
-            return;
-          }
+        // Important!
+        // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
+        function shim() {
           invariant(false, 'Calling PropTypes validators directly is not supported by the `prop-types` package. ' + 'Use PropTypes.checkPropTypes() to call them. ' + 'Read more at http://fb.me/use-check-prop-types');
         };
         shim.isRequired = shim;
         function getShim() {
           return shim;
         };
-        // Important!
-        // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
         var ReactPropTypes = {
           array: shim,
           bool: shim,
@@ -15333,7 +15322,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
         var _assign = __webpack_require__(6);
 
         var ReactChildren = __webpack_require__(71);
-        var ReactComponent = __webpack_require__(17);
+        var ReactComponent = __webpack_require__(16);
         var ReactPureComponent = __webpack_require__(76);
         var ReactClass = __webpack_require__(72);
         var ReactDOMFactories = __webpack_require__(73);
@@ -15639,10 +15628,10 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
         var _prodInvariant = __webpack_require__(4),
             _assign = __webpack_require__(6);
 
-        var ReactComponent = __webpack_require__(17);
+        var ReactComponent = __webpack_require__(16);
         var ReactElement = __webpack_require__(3);
         var ReactPropTypeLocationNames = __webpack_require__(30);
-        var ReactNoopUpdateQueue = __webpack_require__(19);
+        var ReactNoopUpdateQueue = __webpack_require__(18);
 
         var emptyObject = __webpack_require__(14);
         var invariant = __webpack_require__(2);
@@ -16588,8 +16577,8 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
       var _assign = __webpack_require__(6);
 
-      var ReactComponent = __webpack_require__(17);
-      var ReactNoopUpdateQueue = __webpack_require__(19);
+      var ReactComponent = __webpack_require__(16);
+      var ReactNoopUpdateQueue = __webpack_require__(18);
 
       var emptyObject = __webpack_require__(14);
 
@@ -16668,7 +16657,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
           // https://github.com/facebook/react/issues/7240
           // Remove the inline requires when we don't need them anymore:
           // https://github.com/facebook/react/pull/7178
-          ReactComponentTreeHook = __webpack_require__(18);
+          ReactComponentTreeHook = __webpack_require__(17);
         }
 
         var loggedTypeFailures = {};
@@ -16710,7 +16699,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
                 if (process.env.NODE_ENV !== 'production') {
                   if (!ReactComponentTreeHook) {
-                    ReactComponentTreeHook = __webpack_require__(18);
+                    ReactComponentTreeHook = __webpack_require__(17);
                   }
                   if (debugID !== null) {
                     componentStackInfo = ReactComponentTreeHook.getStackAddendumByID(debugID);
@@ -18098,20 +18087,6 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       return emptyFunction.thatReturnsNull;
     }
 
-    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
-      var checker = arrayOfTypeCheckers[i];
-      if (typeof checker !== 'function') {
-        warning(
-          false,
-          'Invalid argument supplid to oneOfType. Expected an array of check functions, but ' +
-          'received %s at index %s.',
-          getPostfixForTypeWarning(checker),
-          i
-        );
-        return emptyFunction.thatReturnsNull;
-      }
-    }
-
     function validate(props, propName, componentName, location, propFullName) {
       for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
         var checker = arrayOfTypeCheckers[i];
@@ -18244,9 +18219,6 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
   // This handles more types than `getPropType`. Only used for error messages.
   // See `createPrimitiveTypeChecker`.
   function getPreciseType(propValue) {
-    if (typeof propValue === 'undefined' || propValue === null) {
-      return '' + propValue;
-    }
     var propType = getPropType(propValue);
     if (propType === 'object') {
       if (propValue instanceof Date) {
@@ -18256,23 +18228,6 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
       }
     }
     return propType;
-  }
-
-  // Returns a string that is postfixed to a warning about an invalid type.
-  // For example, "undefined" or "of type array"
-  function getPostfixForTypeWarning(value) {
-    var type = getPreciseType(value);
-    switch (type) {
-      case 'array':
-      case 'object':
-        return 'an ' + type;
-      case 'boolean':
-      case 'date':
-      case 'regexp':
-        return 'a ' + type;
-      default:
-        return type;
-    }
   }
 
   // Returns class name of the object, if any.

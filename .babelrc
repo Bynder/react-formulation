@@ -9,6 +9,7 @@
         "transform-flow-strip-types",
         "transform-flow-comments",
         "transform-object-entries",
+        "transform-object-assign",
         ["transform-object-rest-spread",
             {
                 "useBuiltIns": true
