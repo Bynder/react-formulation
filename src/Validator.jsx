@@ -41,14 +41,13 @@ const Validator = ({
     children,
 }, context) => {
     const schema = context.validatorAttributes(name);
-
     return (
         <div>
             {React.Children.map(children,
                 (child) => {
                     if (typeof child === 'object') {
                         return React.cloneElement(child, {
-                            ...context.validatorBindInput(name),
+                            ...context.validatorBindInput(name, child.props.type),
                         });
                     }
                     return null;
