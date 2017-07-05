@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "cf1b6e9ca798f69619ca"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "1911b48595a3553e40a1"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -12390,8 +12390,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                   var model = nextState.model;
                   var schema = (0, _validateSchema.getAllValidationErrors)(this.schema, model);
                   // disable the button if there are no changes
-                  var isChanged = (0, _entries2.default)(model).some(function (field) {
-                    var key = field[0];
+                  var isChanged = Object.keys(model).some(function (key) {
                     return model[key].value !== _this2.state.initialModel[key].value;
                   });
                   var isButtonDisabled = isChanged ? !schema.isValid || !nextState.isTouched : true;
@@ -12594,7 +12593,6 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                   resetForm: this.resetForm,
                   clearForm: this.clearForm,
                   getSchema: this.getSchema,
-                  // isButtonDisabled: !this.state.schema.isValid || !this.state.isTouched,
                   isButtonDisabled: this.state.isButtonDisabled,
                   setTouched: this.setTouched,
                   setUntouched: this.setUntouched

@@ -73,10 +73,9 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                     const model = nextState.model;
                     const schema = getAllValidationErrors(this.schema, model);
                     // disable the button if there are no changes
-                    const isChanged = Object.entries(model).some((field) => {
-                        const key = field[0];
-                        return model[key].value !== this.state.initialModel[key].value;
-                    });
+                    const isChanged = Object.keys(model).some(key => (
+                        model[key].value !== this.state.initialModel[key].value
+                    ));
                     const isButtonDisabled = (isChanged) ? !schema.isValid || !nextState.isTouched : true;
                     this.setState({
                         isButtonDisabled,
