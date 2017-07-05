@@ -226,6 +226,7 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                         isValid: null,
                         fields,
                     },
+                    isButtonDisabled: true,
                 });
             }
 
@@ -234,6 +235,7 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                 this.resetValidation();
                 this.setState({
                     model: this.state.initialModel,
+                    isButtonDisabled: true,
                 });
 
                 if (this.state.validateOn !== 'submit') {
