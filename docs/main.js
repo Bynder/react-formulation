@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7feb15850ab3a902e37c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "cf1b6e9ca798f69619ca"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -12363,7 +12363,8 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                 schema: (0, _validateSchema.getAllValidationErrors)(_this.schema, initialModel),
                 initialModel: initialModel,
                 validateOn: validateOn,
-                customMessages: customMessages
+                customMessages: customMessages,
+                isButtonDisabled: true
               };
               return _this;
             }
@@ -12379,6 +12380,25 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                   validatorGetAllErrors: this.getAllValidationErrors,
                   validateOn: this.state.validateOn
                 };
+              }
+            }, {
+              key: 'componentWillUpdate',
+              value: function componentWillUpdate(nextProps, nextState) {
+                var _this2 = this;
+
+                if (this.state.model !== nextState.model) {
+                  var model = nextState.model;
+                  var schema = (0, _validateSchema.getAllValidationErrors)(this.schema, model);
+                  // disable the button if there are no changes
+                  var isChanged = (0, _entries2.default)(model).some(function (field) {
+                    var key = field[0];
+                    return model[key].value !== _this2.state.initialModel[key].value;
+                  });
+                  var isButtonDisabled = isChanged ? !schema.isValid || !nextState.isTouched : true;
+                  this.setState({
+                    isButtonDisabled: isButtonDisabled
+                  });
+                }
               }
             }, {
               key: 'setInitialModel',
@@ -12574,7 +12594,8 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                   resetForm: this.resetForm,
                   clearForm: this.clearForm,
                   getSchema: this.getSchema,
-                  isButtonDisabled: !this.state.schema.isValid || !this.state.isTouched,
+                  // isButtonDisabled: !this.state.schema.isValid || !this.state.isTouched,
+                  isButtonDisabled: this.state.isButtonDisabled,
                   setTouched: this.setTouched,
                   setUntouched: this.setUntouched
                 });
@@ -14273,7 +14294,8 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
       var regExp = {
         phoneNumbers: /^(?:[0-9\s\-\+\(\)])+$/, // eslint-disable-line no-useless-escape
         noOnlySpaces: /^\s*$/, // https://regex101.com/r/j4DA51/2/
-        email: /^[^@]+@[^@]+.[^@]+$/ };
+        email: /^[^@]+@[^@]+.[^@]+$/ // https://regex101.com/r/RNreQI/1/tests
+      };
 
       var validationRules = {
         required: function required(val) {
@@ -16950,7 +16972,8 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
       }).call(exports, __webpack_require__(0));
 
       /***/
-    }])
+    }]
+    /******/)
   );
 });
 //# sourceMappingURL=react-formulation.js.map

@@ -53,6 +53,7 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                     initialModel,
                     validateOn,
                     customMessages,
+                    isButtonDisabled: true,
                 };
             }
 
@@ -65,6 +66,22 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                     validatorGetAllErrors: this.getAllValidationErrors,
                     validateOn: this.state.validateOn,
                 };
+            }
+
+            componentWillUpdate(nextProps: Props, nextState: Object) {
+                if (this.state.model !== nextState.model) {
+                    const model = nextState.model;
+                    const schema = getAllValidationErrors(this.schema, model);
+                    // disable the button if there are no changes
+                    const isChanged = Object.entries(model).some((field) => {
+                        const key = field[0];
+                        return model[key].value !== this.state.initialModel[key].value;
+                    });
+                    const isButtonDisabled = (isChanged) ? !schema.isValid || !nextState.isTouched : true;
+                    this.setState({
+                        isButtonDisabled,
+                    });
+                }
             }
 
             @autobind
@@ -265,7 +282,8 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                     resetForm: this.resetForm,
                     clearForm: this.clearForm,
                     getSchema: this.getSchema,
-                    isButtonDisabled: !this.state.schema.isValid || !this.state.isTouched,
+                    // isButtonDisabled: !this.state.schema.isValid || !this.state.isTouched,
+                    isButtonDisabled: this.state.isButtonDisabled,
                     setTouched: this.setTouched,
                     setUntouched: this.setUntouched,
                 };
