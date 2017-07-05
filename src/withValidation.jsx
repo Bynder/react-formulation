@@ -282,7 +282,6 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                     resetForm: this.resetForm,
                     clearForm: this.clearForm,
                     getSchema: this.getSchema,
-                    // isButtonDisabled: !this.state.schema.isValid || !this.state.isTouched,
                     isButtonDisabled: this.state.isButtonDisabled,
                     setTouched: this.setTouched,
                     setUntouched: this.setUntouched,
