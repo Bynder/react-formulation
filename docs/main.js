@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "53c06a3c26bfea11a513"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "591864b44e96e9faa060"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -12414,7 +12414,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                   };
                 });
                 this.setState({ model: initialModel, initialModel: initialModel });
-                this.getAllValidationErrors(initialModel);
+                this.resetValidation(initialModel);
               }
             }, {
               key: 'setModel',

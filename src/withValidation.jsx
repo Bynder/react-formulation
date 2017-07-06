@@ -93,7 +93,7 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                     };
                 });
                 this.setState({ model: initialModel, initialModel });
-                this.getAllValidationErrors(initialModel);
+                this.resetValidation(initialModel);
             }
 
             @autobind
