@@ -93,7 +93,7 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                     };
                 });
                 this.setState({ model: initialModel, initialModel });
-                this.getAllValidationErrors(initialModel);
+                this.resetValidation(initialModel);
             }
 
             @autobind
@@ -154,7 +154,8 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
 
             @autobind
             validateInput(e: Event) {
-                const { name, value } = e.target;
+                const { name, type, value: targetValue } = e.target;
+                const value = (type === 'checkbox') ? e.target.checked : targetValue;
                 this.setState({
                     schema: getValidationErrors(
                         this.schema,
@@ -182,9 +183,13 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
 
             @autobind
             bindToChangeEvent(e: Event) {
-                const { name, value } = e.target;
+                const { name, type, value } = e.target;
 
-                this.setInputProperty(name, value);
+                if (type === 'checkbox') {
+                    this.setInputProperty(name, e.target.checked);
+                } else {
+                    this.setInputProperty(name, value);
+                }
 
                 if (this.state.validateOn === 'change') {
                     this.validateInput(e);
@@ -198,13 +203,22 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
             }
 
             @autobind
-            bindInput(name: string) {
+            bindInput(name: string, type: string) {
                 const model = this.state.model[name];
-                return {
+                const props = {
                     name,
-                    value: (model && model.value) ? model.value : '',
                     onChange: this.bindToChangeEvent,
                     onBlur: this.state.validateOn === 'blur' ? this.validateInput : null,
+                };
+                if (type === 'checkbox') {
+                    return {
+                        ...props,
+                        checked: (model && model.value) ? model.value : false,
+                    };
+                }
+                return {
+                    ...props,
+                    value: (model && model.value) ? model.value : '',
                 };
             }
 

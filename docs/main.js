@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "6ba7b4d5e795f4751866"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "591864b44e96e9faa060"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -12414,7 +12414,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                   };
                 });
                 this.setState({ model: initialModel, initialModel: initialModel });
-                this.getAllValidationErrors(initialModel);
+                this.resetValidation(initialModel);
               }
             }, {
               key: 'setModel',
@@ -12469,8 +12469,10 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
               value: function validateInput(e) {
                 var _e$target = e.target,
                     name = _e$target.name,
-                    value = _e$target.value;
+                    type = _e$target.type,
+                    targetValue = _e$target.value;
 
+                var value = type === 'checkbox' ? e.target.checked : targetValue;
                 this.setState({
                   schema: (0, _validateSchema.getValidationErrors)(this.schema, name, value, this.state.schema, this.state.model)
                 });
@@ -12488,9 +12490,14 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
               value: function bindToChangeEvent(e) {
                 var _e$target2 = e.target,
                     name = _e$target2.name,
+                    type = _e$target2.type,
                     value = _e$target2.value;
 
-                this.setInputProperty(name, value);
+                if (type === 'checkbox') {
+                  this.setInputProperty(name, e.target.checked);
+                } else {
+                  this.setInputProperty(name, value);
+                }
 
                 if (this.state.validateOn === 'change') {
                   this.validateInput(e);
@@ -12504,14 +12511,21 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
               }
             }, {
               key: 'bindInput',
-              value: function bindInput(name) {
+              value: function bindInput(name, type) {
                 var model = this.state.model[name];
-                return {
+                var props = {
                   name: name,
-                  value: model && model.value ? model.value : '',
                   onChange: this.bindToChangeEvent,
                   onBlur: this.state.validateOn === 'blur' ? this.validateInput : null
                 };
+                if (type === 'checkbox') {
+                  return _extends({}, props, {
+                    checked: model && model.value ? model.value : false
+                  });
+                }
+                return _extends({}, props, {
+                  value: model && model.value ? model.value : ''
+                });
               }
             }, {
               key: 'resetValidation',
@@ -14161,10 +14175,9 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
             children = _ref2.children;
 
         var schema = context.validatorAttributes(name);
-
         return _react2.default.createElement('div', null, _react2.default.Children.map(children, function (child) {
           if ((typeof child === 'undefined' ? 'undefined' : _typeof(child)) === 'object') {
-            return _react2.default.cloneElement(child, _extends({}, context.validatorBindInput(name)));
+            return _react2.default.cloneElement(child, _extends({}, context.validatorBindInput(name, child.props.type)));
           }
           return null;
         }), !hideErrors && schema.isValid === false && (schema.isTouched || context.validateOn === 'submit') ? _react2.default.createElement(ErrorsBlock, {
