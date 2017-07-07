@@ -251,10 +251,6 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                     model: this.state.initialModel,
                     isButtonDisabled: true,
                 });
-
-                if (this.state.validateOn !== 'submit') {
-                    this.getAllValidationErrors(this.state.initialModel);
-                }
             }
 
             @autobind
@@ -274,10 +270,6 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                     model,
                     isTouched: false,
                 });
-
-                if (this.state.validateOn !== 'submit') {
-                    this.getAllValidationErrors(model);
-                }
             }
 
             render() {
