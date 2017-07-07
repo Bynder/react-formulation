@@ -53,7 +53,7 @@ const Validator = ({
                     return null;
                 },
             )}
-            {(!hideErrors && schema.isValid === false && (schema.isTouched || context.validateOn === 'submit')) ? (
+            {(!hideErrors && schema.isValid === false) ? (
                 <ErrorsBlock
                     errors={schema.errors}
                 />

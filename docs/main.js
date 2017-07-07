@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "591864b44e96e9faa060"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "09594916568efba586a1"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -10313,7 +10313,7 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
 }
 
 var MyForm = (_dec = (0, _reactFormulation.withValidation)({
-    validateOn: 'change',
+    validateOn: 'blur',
     schema: {
         firstname: {
             required: true,
@@ -10431,8 +10431,7 @@ var MyForm = (_dec = (0, _reactFormulation.withValidation)({
                     'button',
                     {
                         className: 'btn btn-primary',
-                        type: 'submit',
-                        disabled: this.props.isButtonDisabled
+                        type: 'submit'
                     },
                     'Submit'
                 )
@@ -12560,10 +12559,6 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                   model: this.state.initialModel,
                   isButtonDisabled: true
                 });
-
-                if (this.state.validateOn !== 'submit') {
-                  this.getAllValidationErrors(this.state.initialModel);
-                }
               }
             }, {
               key: 'clearForm',
@@ -12586,10 +12581,6 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                   model: model,
                   isTouched: false
                 });
-
-                if (this.state.validateOn !== 'submit') {
-                  this.getAllValidationErrors(model);
-                }
               }
             }, {
               key: 'render',
@@ -14180,7 +14171,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
             return _react2.default.cloneElement(child, _extends({}, context.validatorBindInput(name, child.props.type)));
           }
           return null;
-        }), !hideErrors && schema.isValid === false && (schema.isTouched || context.validateOn === 'submit') ? _react2.default.createElement(ErrorsBlock, {
+        }), !hideErrors && schema.isValid === false ? _react2.default.createElement(ErrorsBlock, {
           errors: schema.errors
         }) : null);
       };
