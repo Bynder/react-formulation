@@ -8,10 +8,11 @@ type Props = {
     setInitialModel: Object => void,
     clearForm: () => void,
     model: Object,
+    isButtonDisabled: boolean,
 }
 
 @withValidation({
-    validateOn: 'blur',
+    validateOn: 'change',
     schema: {
         firstname: {
             required: true,
@@ -91,6 +92,7 @@ class MyForm extends React.Component {
                 <button
                     className="btn btn-primary"
                     type="submit"
+                    disabled={this.props.isButtonDisabled}
                 >
                     Submit
                 </button>

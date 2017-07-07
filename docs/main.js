@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "09594916568efba586a1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "01c4f67d8257fe91e034"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -10313,7 +10313,7 @@ function _applyDecoratedDescriptor(target, property, decorators, descriptor, con
 }
 
 var MyForm = (_dec = (0, _reactFormulation.withValidation)({
-    validateOn: 'blur',
+    validateOn: 'change',
     schema: {
         firstname: {
             required: true,
@@ -10431,7 +10431,8 @@ var MyForm = (_dec = (0, _reactFormulation.withValidation)({
                     'button',
                     {
                         className: 'btn btn-primary',
-                        type: 'submit'
+                        type: 'submit',
+                        disabled: this.props.isButtonDisabled
                     },
                     'Submit'
                 )
@@ -14171,7 +14172,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
             return _react2.default.cloneElement(child, _extends({}, context.validatorBindInput(name, child.props.type)));
           }
           return null;
-        }), !hideErrors && schema.isValid === false ? _react2.default.createElement(ErrorsBlock, {
+        }), !hideErrors && schema.isValid === false && (schema.isTouched || context.validateOn === 'submit') ? _react2.default.createElement(ErrorsBlock, {
           errors: schema.errors
         }) : null);
       };
