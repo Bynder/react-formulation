@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "01c4f67d8257fe91e034"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e9fed43db799f0baf34f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -12503,6 +12503,8 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
                   this.validateInput(e);
                 } else if (this.state.validateOn === 'submit' && this.state.schema.fields[name].isValid !== null) {
                   this.resetValidation();
+                } else if (this.state.validateOn === 'blur' && this.state.schema.fields[name].isValid !== null) {
+                  this.state.schema.fields[name].isValid = null;
                 }
 
                 if (!this.state.isTouched) {
@@ -14299,8 +14301,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
       var regExp = {
         phoneNumbers: /^(?:[0-9\s\-\+\(\)])+$/, // eslint-disable-line no-useless-escape
         noOnlySpaces: /^\s*$/, // https://regex101.com/r/j4DA51/2/
-        email: /^[^@]+@[^@]+.[^@]+$/ // https://regex101.com/r/RNreQI/1/tests
-      };
+        email: /^[^@]+@[^@]+.[^@]+$/ };
 
       var validationRules = {
         required: function required(val) {
@@ -16977,8 +16978,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
       }).call(exports, __webpack_require__(0));
 
       /***/
-    }]
-    /******/)
+    }])
   );
 });
 //# sourceMappingURL=react-formulation.js.map

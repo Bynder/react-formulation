@@ -195,6 +195,8 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                     this.validateInput(e);
                 } else if (this.state.validateOn === 'submit' && this.state.schema.fields[name].isValid !== null) {
                     this.resetValidation();
+                } else if (this.state.validateOn === 'blur' && this.state.schema.fields[name].isValid !== null) {
+                    this.state.schema.fields[name].isValid = null;
                 }
 
                 if (!this.state.isTouched) {
