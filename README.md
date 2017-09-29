@@ -48,7 +48,7 @@ import { withValidation, Validator } from '@bynder/react-formulation';
         },
         lastname: {
             minLength: 2,
-            maxLenght: 30,
+            maxLength: 30,
         },
         // ...more validation rules
     }
