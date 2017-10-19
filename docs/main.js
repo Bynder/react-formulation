@@ -14301,7 +14301,10 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
       var regExp = {
         phoneNumbers: /^(?:[0-9\s\-\+\(\)])+$/, // eslint-disable-line no-useless-escape
         noOnlySpaces: /^\s*$/, // https://regex101.com/r/j4DA51/2/
-        email: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ };
+        // https://regex101.com/r/A28vja/5/tests
+        // eslint-disable-next-line max-len
+        email: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      };
 
       var validationRules = {
         required: function required(val) {
