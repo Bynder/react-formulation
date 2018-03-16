@@ -128,6 +128,21 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
             }
 
             @autobind
+            setPropertyAndValidate(prop: string, value: any) {
+                const model = this.setInputProperty(prop, value);
+                const validationErrors = getValidationErrors(
+                  this.schema,
+                  prop,
+                  value,
+                  this.state.schema,
+                  model,
+                  );
+                this.setState({
+                    schema: validationErrors,
+                });
+            }
+
+            @autobind
             setTouched() {
                 this.setState({ isTouched: true });
             }
@@ -280,6 +295,7 @@ export default function withValidation(configuration: Object | ReactClass<any>) 
                     bindInput: this.bindInput,
                     bindToChangeEvent: this.bindToChangeEvent,
                     model: this.state.model,
+                    setPropertyAndValidate: this.setPropertyAndValidate,
                     setProperty: this.setProperty,
                     setModel: this.setModel,
                     setInitialModel: this.setInitialModel,
