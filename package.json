@@ -27,7 +27,7 @@
   ],
   "main": "lib/react-formulation.js",
   "dependencies": {
-    "autobind-decorator": "^1.4.0",
+    "autobind-decorator": "^1.4.3",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
